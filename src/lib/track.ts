@@ -10,7 +10,8 @@ export type TrackEvent =
   | 'view_resultado'
   | 'view_encontro1'
   | 'encontro1_done'
-  | 'checkout_click';
+  | 'checkout_click'
+  | 'avulso_upsell';
 
 export interface TrackPayload {
   event: TrackEvent;

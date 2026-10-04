@@ -1,16 +1,25 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { formatPrice, site } from '@/config/site';
 import Logo from '@/components/Logo';
 import Footer from '@/components/Footer';
 import { Icon, Wave } from '@/components/Illustrations';
+import { track } from '@/lib/track';
+
+const COUNTDOWN = 8; // segundos para ler antes de seguir
 
 const NUMBERS = Array.from({ length: 29 }, (_, i) => i + 2); // o Encontro 1 é grátis
 const MIN = site.avulsoMinimum;
 
 export default function AvulsoPage() {
+  const router = useRouter();
   const [picked, setPicked] = useState<number[]>([]);
+  const [asking, setAsking] = useState(false);
+  const [left, setLeft] = useState(COUNTDOWN);
+  const [paused, setPaused] = useState(false);
+  const headingRef = useRef<HTMLHeadingElement>(null);
 
   const toggle = (x: number) =>
     setPicked((p) => (p.includes(x) ? p.filter((y) => y !== x) : [...p, x].sort((a, b) => a - b)));
@@ -20,6 +29,34 @@ export default function AvulsoPage() {
   const ok = count >= MIN;
   const missing = MIN - count;
   const cheaperPackage = ok && total > site.price;
+  const avulsoHref = `/go?p=avulso&n=${picked.join(',')}`;
+
+  function openUpsell() {
+    if (!cheaperPackage) {
+      router.push(avulsoHref);
+      return;
+    }
+    setLeft(COUNTDOWN);
+    setPaused(false);
+    setAsking(true);
+    track('avulso_upsell', { quantidade: count, total, etapa: 'exibido' });
+  }
+
+  useEffect(() => {
+    if (!asking) return;
+    headingRef.current?.focus();
+  }, [asking]);
+
+  useEffect(() => {
+    if (!asking || paused) return;
+    if (left <= 0) {
+      track('avulso_upsell', { quantidade: count, total, etapa: 'redirecionado_automatico' });
+      router.push('/go?p=principal');
+      return;
+    }
+    const t = setTimeout(() => setLeft((x) => x - 1), 1000);
+    return () => clearTimeout(t);
+  }, [asking, paused, left]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
@@ -64,7 +101,7 @@ export default function AvulsoPage() {
                 </p>
               ) : (
                 <>
-                  <Link href={`/go?p=avulso&n=${picked.join(',')}`} className="btn-primary mt-3 w-full">Ir para o pagamento</Link>
+                  <button type="button" onClick={openUpsell} className="btn-primary mt-3 w-full">Ir para o pagamento</button>
                   <p className="mt-2 flex items-center justify-center gap-1 text-xs text-ink/70"><Icon name="shield" className="h-4 w-4" />Garantia incondicional de {site.guaranteeDays} dias</p>
                 </>
               )}
@@ -84,6 +121,31 @@ export default function AvulsoPage() {
         </div>
       </main>
       <Footer />
+
+      {asking && (
+        <div className="fixed inset-0 z-50 flex items-end justify-center bg-teal-dark/80 p-4 backdrop-blur-sm sm:items-center" role="dialog" aria-modal="true" aria-labelledby="upsell-title">
+          <div className="w-full max-w-md rounded-3xl border-4 border-gold bg-cream p-6 text-center shadow-2xl">
+            <Icon name="heart" className="mx-auto h-10 w-10 text-gold-dark" />
+            <h2 id="upsell-title" ref={headingRef} tabIndex={-1} className="mt-2 text-2xl font-extrabold outline-none">Antes de pagar, repare nisso</h2>
+            <p className="mt-3 text-lg">
+              Você está pagando <b className="text-teal">{formatPrice(total)}</b> por <b>{count} encontros</b>. Os <b>30 encontros</b> custam <b className="text-teal">{formatPrice()}</b>: <b>mais conteúdo por um valor menor</b>.
+            </p>
+            <p className="mt-2 text-sm text-ink/75">Vamos te levar ao checkout dos 30 encontros{paused ? '.' : ` em ${left}s`}.</p>
+            <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-sand" aria-hidden="true">
+              <div className="h-full rounded-full bg-gold transition-all duration-1000 ease-linear" style={{ width: `${paused ? 100 : ((COUNTDOWN - left) / COUNTDOWN) * 100}%` }} />
+            </div>
+            <Link href="/go?p=principal" onClick={() => track('avulso_upsell', { quantidade: count, total, etapa: 'aceitou' })} className="btn-primary mt-5 w-full">
+              Quero os 30 encontros por {formatPrice()}
+            </Link>
+            <Link href={avulsoHref} onClick={() => track('avulso_upsell', { quantidade: count, total, etapa: 'manteve_avulso' })} className="btn-secondary mt-3 w-full">
+              Prefiro só os {count} por {formatPrice(total)}
+            </Link>
+            <button type="button" onClick={() => { setPaused(true); setAsking(false); }} className="mt-3 min-h-[44px] text-sm font-semibold text-ink/70 underline">
+              Voltar e mudar a seleção
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 }

@@ -12,7 +12,7 @@ export const site = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://lacosdefe.example.com',
 
   /** Preço em reais (valor inteiro ou decimal). */
-  price: 37,
+  price: 37.9,
   /** Preço de cada encontro comprado à parte (a partir do Encontro 2). */
   priceSingle: 19.9,
   /** Mínimo de encontros na compra à parte (2 x 19,90 = 39,80, acima do pacote de 30). */
