@@ -6,17 +6,18 @@
   html { scroll-behavior: smooth; }
   body { @apply bg-cream font-sans text-ink antialiased; }
   h1, h2, h3 { @apply font-serif text-teal-dark; }
-  :focus-visible { outline: 3px solid #16295A; outline-offset: 3px; border-radius: 6px; }
+  :focus-visible { outline: 3px solid #14295F; outline-offset: 3px; border-radius: 6px; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; } }
 }
 
 @layer components {
   .btn { @apply inline-flex min-h-[52px] items-center justify-center rounded-full px-8 py-3 text-base font-extrabold transition-all; }
-  .btn-primary { @apply btn text-teal-dark shadow-[0_6px_18px_-6px_rgba(138,90,14,.55)] hover:brightness-105 active:translate-y-px; background: linear-gradient(180deg, #F0BE55 0%, #D9992B 100%); }
+  .btn-primary { @apply btn text-teal-dark shadow-[0_6px_18px_-6px_rgba(138,84,0,.55)] hover:brightness-105 active:translate-y-px; background: linear-gradient(180deg, #FFD66B 0%, #EBA823 100%); }
   .btn-secondary { @apply btn border-2 border-teal bg-transparent text-teal hover:bg-teal-soft; }
+  .btn-light { @apply btn border-2 border-white/80 bg-transparent text-white hover:bg-white/10; }
   .btn-gold { @apply btn-primary; }
   .section { @apply mx-auto w-full max-w-3xl px-5 py-12 sm:py-16; }
-  .card { @apply rounded-3xl border border-gold/30 bg-white/80 p-5 shadow-[0_8px_24px_-14px_rgba(138,90,14,.35)]; }
+  .card { @apply rounded-3xl border border-gold/30 bg-white/80 p-5 shadow-[0_8px_24px_-14px_rgba(138,84,0,.35)]; }
   .eyebrow { @apply text-xs font-extrabold uppercase tracking-[.18em] text-gold-dark; }
   .gold-rule { @apply mx-auto h-1 w-16 rounded-full bg-gold; }
   .skeleton { @apply animate-pulse rounded-2xl bg-gold/20; }

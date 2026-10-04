@@ -37,6 +37,8 @@ export const site = {
   /** Teste de preço A/B (só vale para afiliados com checkoutUrlB). */
   abTestEnabled: false,
 
+  logo: { src: '/logo.webp', width: 2000, height: 667 },
+
   /** Janela first-touch da atribuição de afiliado. */
   attributionWindowDays: 60,
 

@@ -5,11 +5,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        cream: '#FFF8E8',
-        sand: '#F3E4BE',
+        cream: '#FFF5DB',
+        sand: '#F8E2A6',
         ink: '#1E2A2E',
-        teal: { DEFAULT: '#16295A', dark: '#0C1A3D', soft: '#F6E9C8' },
-        gold: { DEFAULT: '#E0A93B', dark: '#8A5A0E', light: '#F4D488' },
+        teal: { DEFAULT: '#14295F', dark: '#0A1A45', soft: '#FDEBB8' },
+        gold: { DEFAULT: '#EBA823', dark: '#8A5400', light: '#FFD66B' },
       },
       fontFamily: {
         serif: ['var(--font-fraunces)', 'Georgia', 'serif'],

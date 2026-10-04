@@ -4,7 +4,7 @@ import { Sun } from './Illustrations';
 
 export default function Offer({ lead }: { lead?: string }) {
   return (
-    <section id="oferta" className="relative overflow-hidden bg-teal-dark text-white" aria-labelledby="oferta-titulo">
+    <section id="oferta" className="relative overflow-hidden bg-teal-dark text-white [background-image:radial-gradient(60%_80%_at_50%_0%,rgba(235,168,35,.35),transparent)]" aria-labelledby="oferta-titulo">
       <Sun className="pointer-events-none absolute -left-8 -top-8 h-32 w-32 opacity-25" />
       <div className="relative mx-auto max-w-3xl px-5 py-16 text-center">
         <p className="eyebrow !text-gold-light">Sua oferta</p>
