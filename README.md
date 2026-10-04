@@ -27,6 +27,17 @@ Parâmetros repassados ao checkout: `checkoutParamMap` e `checkoutAffiliateParam
 ## Medição
 `src/lib/track.ts`. Em dev, loga no console. Em produção, se `NEXT_PUBLIC_CF_BEACON_TOKEN` existir, carrega o Cloudflare Web Analytics. Atenção: o Cloudflare mede visitas/páginas, não eventos customizados. Para gravar os eventos (quiz_complete, checkout_click…), use `registerSink(fn)` na próxima etapa (ex.: Supabase).
 
+## Garantias, preços e encontros avulsos
+- Preços: `price` (30 encontros) e `priceSingle` (R$ 19,90 por encontro) em `src/config/site.ts`.
+- Garantias: `guaranteeDays` (7, incondicional) e `guarantee30Days` (30, "faça os encontros e, se nada mudou, 100% de volta"). TODO: configurar o prazo no produto da Cakto e definir o que vale como comprovação (ex.: registro dos encontros enviado por WhatsApp). Ajustar `/termos`.
+- Avulso: `/avulso` (escolhe o encontro 2 a 30) -> `/go?p=avulso&n=7`. Cada afiliado pode ter `checkoutUrlAvulso`; sem ele usa o do `default`. O número do encontro vai ao checkout no parâmetro `checkoutEncounterParam` (TODO: confirmar na Cakto).
+
+## Quiz gamificado
+10 perguntas + 3 cartões de feedback (`src/lib/quiz.ts`: `QUESTIONS`, `FEEDBACKS`). XP, níveis (árvore que cresce) e conquistas. O resultado cita as respostas da pessoa.
+
+## Notificações de prova social
+`src/content/activity.ts` está vazio de propósito: só coloque fatos REAIS (ex.: dados do banco na Etapa 2). Números inventados são propaganda enganosa.
+
 ## Publicar
 Defina `NEXT_PUBLIC_SITE_URL` (para o Open Graph) e, opcionalmente, `NEXT_PUBLIC_CF_BEACON_TOKEN`.
 - **Cloudflare Pages:** build command `npm run build`, output directory `out`.
@@ -43,4 +54,6 @@ Defina `NEXT_PUBLIC_SITE_URL` (para o Open Graph) e, opcionalmente, `NEXT_PUBLIC
 - [ ] Revisão teológica do Encontro 1
 - [ ] Domínio + `NEXT_PUBLIC_SITE_URL`; token do Cloudflare Web Analytics
 - [ ] WhatsApp real dos afiliados; nome definitivo do produto
+- [ ] Garantia de 30 dias: prazo na Cakto + processo de comprovação + `/termos`
+- [ ] Checkout avulso (R$ 19,90) e parâmetro do número do encontro
 - [ ] Depoimentos: só reais, em `src/content/testimonials.ts`

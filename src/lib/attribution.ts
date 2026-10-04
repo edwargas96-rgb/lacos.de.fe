@@ -101,6 +101,8 @@ export function getVariant(
   return v;
 }
 
+export type Product = 'principal' | 'avulso';
+
 /** Monta a URL do checkout repassando os parâmetros configurados em site.ts. */
 export function buildCheckoutUrl(
   attr: Attribution,
@@ -108,13 +110,23 @@ export function buildCheckoutUrl(
   variant: Variant,
   paramMap: Record<string, string> = site.checkoutParamMap,
   affiliateParam: string = site.checkoutAffiliateParam,
+  product: Product = 'principal',
+  encounter?: number,
+  encounterParam: string = site.checkoutEncounterParam,
+  fallback: Affiliate | undefined = AFFILIATES[DEFAULT_SLUG],
 ): string {
-  const base = variant === 'B' && affiliate.checkoutUrlB ? affiliate.checkoutUrlB : affiliate.checkoutUrl;
+  let base: string;
+  if (product === 'avulso') {
+    base = affiliate.checkoutUrlAvulso ?? fallback?.checkoutUrlAvulso ?? affiliate.checkoutUrl;
+  } else {
+    base = variant === 'B' && affiliate.checkoutUrlB ? affiliate.checkoutUrlB : affiliate.checkoutUrl;
+  }
   const url = new URL(base);
   for (const [from, to] of Object.entries(paramMap)) {
     const value = attr.utm[from];
     if (value) url.searchParams.set(to, value);
   }
   if (affiliateParam) url.searchParams.set(affiliateParam, attr.slug);
+  if (product === 'avulso' && encounter && encounterParam) url.searchParams.set(encounterParam, String(encounter));
   return url.toString();
 }

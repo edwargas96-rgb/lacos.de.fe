@@ -14,8 +14,9 @@ export default function Termos() {
       <p>Cada família é única e os resultados variam. Não prometemos mudanças de comportamento.</p>
       <h2>Acesso e uso</h2>
       <p>O acesso é pessoal e destinado ao uso da sua família. Não é permitido revender ou redistribuir o conteúdo. {/* TODO: revisar cláusulas de licença de uso. */}</p>
-      <h2>Garantia</h2>
-      <p>Você tem {site.guaranteeDays} dias, a partir da compra, para pedir o reembolso integral, sem precisar justificar. {/* TODO: descrever o procedimento de pedido de reembolso e o canal de contato. */}</p>
+      <h2>Garantias</h2>
+      <p>Garantia incondicional: você tem {site.guaranteeDays} dias, a partir da compra, para pedir o reembolso integral, sem precisar justificar.</p>
+      <p>Garantia Laços de Fé: em até {site.guarantee30Days} dias, se você comprovar que realizou os encontros e a sua família não mudou em nada, devolvemos 100% do valor pago. {/* TODO: descrever o que vale como comprovação, o procedimento e o canal de contato; alinhar com o prazo configurado na Cakto. */}</p>
       <h2>Links de indicação</h2>
       <p>Algumas pessoas divulgam o produto por links de indicação (afiliados) e podem receber comissão pela venda, sem custo adicional para você.</p>
     </LegalPage>

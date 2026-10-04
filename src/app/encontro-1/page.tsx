@@ -8,7 +8,8 @@ import { track } from '@/lib/track';
 import TrackView from '@/components/TrackView';
 import Footer from '@/components/Footer';
 import Skeleton from '@/components/Skeleton';
-import { Encontro1Illustration } from '@/components/Illustrations';
+import { Wave } from '@/components/Illustrations';
+import Logo from '@/components/Logo';
 
 const DONE_KEY = 'lf_e1_done';
 interface Done { rating: number }
@@ -43,13 +44,20 @@ export default function Encontro1Page() {
   return (
     <>
       <TrackView event="view_encontro1" />
-      <article className="mx-auto max-w-2xl px-5 py-8">
-        <Link href="/" className="inline-flex min-h-[44px] items-center text-sm font-bold text-teal underline">← Voltar ao início</Link>
-        <p className="eyebrow mt-2">Encontro {e.numero} · grátis · 10 a 15 min</p>
-        <h1 className="mt-1 text-3xl font-bold sm:text-4xl">{e.titulo}</h1>
-        <p className="mt-1 text-sm text-ink/70">{e.passagem}</p>
-
-        <Encontro1Illustration className="my-6 h-auto w-full" />
+      <header className="relative overflow-hidden bg-teal-dark text-white [background-image:radial-gradient(70%_70%_at_50%_100%,rgba(235,168,35,.4),transparent)]">
+        <div className="mx-auto max-w-2xl px-5 pb-10 pt-6 text-center">
+          <Link href="/" aria-label="Voltar ao início" className="inline-block rounded-2xl bg-cream px-4 py-1.5"><Logo className="w-[150px]" /></Link>
+          <p className="eyebrow mt-5 !text-gold-light">Encontro {e.numero} · grátis · 10 a 15 min</p>
+          <h1 className="mt-1 text-4xl font-black !text-white sm:text-5xl">{e.titulo}</h1>
+          <p className="mt-2 text-sm text-white/80">{e.passagem}</p>
+        </div>
+        <Wave fill="#FFF5DB" />
+      </header>
+      <article className="mx-auto max-w-2xl px-5 pb-10">
+<figure className="-mt-2 mb-8 overflow-hidden rounded-3xl border-4 border-white shadow-2xl">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/encontro-1.webp" width={1536} height={1024} alt="Zaqueu sentado num galho da árvore olhando para Jesus, que o chama pelo nome, com o povo ao redor" className="h-auto w-full" fetchPriority="high" />
+        </figure>
 
         <div className="card mb-8">
           <p className="mb-2 font-bold">Versão do encontro</p>
@@ -66,17 +74,17 @@ export default function Encontro1Page() {
         </div>
 
         <section aria-labelledby="h-historia" className="mb-8">
-          <h2 id="h-historia" className="mb-3 text-2xl font-bold">1 · História</h2>
-          <div className="space-y-3 text-lg leading-relaxed">{e.historia.map((p) => <p key={p}>{p}</p>)}</div>
+          <h2 id="h-historia" className="mb-3 flex items-center gap-3 text-2xl font-bold"><span className="flex h-9 w-9 items-center justify-center rounded-full bg-gold font-black text-teal-dark" aria-hidden="true">1</span>História</h2>
+          <div className="card space-y-3 text-lg leading-relaxed">{e.historia.map((p) => <p key={p}>{p}</p>)}</div>
         </section>
 
         <section aria-labelledby="h-conversa" className="mb-8">
-          <h2 id="h-conversa" className="mb-3 text-2xl font-bold">2 · Conversa</h2>
-          <ol className="list-decimal space-y-3 pl-6 text-lg">{e.perguntas[version].map((q) => <li key={q}>{q}</li>)}</ol>
+          <h2 id="h-conversa" className="mb-3 flex items-center gap-3 text-2xl font-bold"><span className="flex h-9 w-9 items-center justify-center rounded-full bg-gold font-black text-teal-dark" aria-hidden="true">2</span>Conversa</h2>
+          <ol className="space-y-3">{e.perguntas[version].map((q, i) => <li key={q} className="card flex gap-3 text-lg"><span className="font-serif text-2xl font-black text-gold-dark">{i + 1}</span><span>{q}</span></li>)}</ol>
         </section>
 
         <section aria-labelledby="h-atividade" className="mb-8">
-          <h2 id="h-atividade" className="mb-3 text-2xl font-bold">3 · Atividade fora da tela</h2>
+          <h2 id="h-atividade" className="mb-3 flex items-center gap-3 text-2xl font-bold"><span className="flex h-9 w-9 items-center justify-center rounded-full bg-gold font-black text-teal-dark" aria-hidden="true">3</span>Atividade fora da tela</h2>
           <div className="card">
             <p className="font-bold">{e.atividade.titulo} · {e.atividade.minutos} min</p>
             <p className="mt-1">{e.atividade.descricao}</p>
@@ -85,16 +93,16 @@ export default function Encontro1Page() {
         </section>
 
         <section aria-labelledby="h-oracao" className="mb-8">
-          <h2 id="h-oracao" className="mb-3 text-2xl font-bold">4 · Oração</h2>
+          <h2 id="h-oracao" className="mb-3 flex items-center gap-3 text-2xl font-bold"><span className="flex h-9 w-9 items-center justify-center rounded-full bg-gold font-black text-teal-dark" aria-hidden="true">4</span>Oração</h2>
           <p className="card text-lg italic">{e.oracao}</p>
         </section>
 
-        <section className="mb-8 rounded-2xl bg-teal-soft p-5">
+        <section className="mb-8 rounded-3xl border-2 border-gold bg-teal-soft p-5">
           <h2 className="mb-2 text-xl font-bold">Plano B: se ele não quiser</h2>
           <p>{e.planoB}</p>
         </section>
-        <section className="mb-10 rounded-2xl bg-sand p-5">
-          <h2 className="mb-2 text-xl font-bold">Dica para pais</h2>
+        <section className="mb-10 rounded-3xl bg-teal p-5 text-white"><span className="sr-only">Dica</span>
+          <h2 className="mb-2 text-xl font-bold !text-gold-light">Dica para pais</h2>
           <p>{e.dicaPais}</p>
         </section>
 

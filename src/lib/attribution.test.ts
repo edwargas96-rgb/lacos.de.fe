@@ -91,6 +91,18 @@ describe('buildCheckoutUrl', () => {
     expect(url.searchParams.get('ref')).toBe('ana');
   });
 
+  it('encontro avulso usa o checkout avulso e envia o número do encontro', () => {
+    const aff = { ...affiliates.ana, checkoutUrlAvulso: 'https://pay.test/ana-avulso' };
+    const url = new URL(buildCheckoutUrl(attr, aff, 'A', {}, '', 'avulso', 7, 'encontro'));
+    expect(url.origin + url.pathname).toBe('https://pay.test/ana-avulso');
+    expect(url.searchParams.get('encontro')).toBe('7');
+  });
+
+  it('avulso sem checkout próprio cai no do afiliado default', () => {
+    const url = buildCheckoutUrl(attr, affiliates.bia, 'A', {}, '', 'avulso', 3, '', { ...affiliates.default, checkoutUrlAvulso: 'https://pay.test/default-avulso' });
+    expect(url).toBe('https://pay.test/default-avulso');
+  });
+
   it('usa checkoutUrlB na variante B', () => {
     expect(buildCheckoutUrl(attr, affiliates.ana, 'B', {}, '')).toBe('https://pay.test/ana-b');
   });

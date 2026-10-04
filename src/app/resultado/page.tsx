@@ -61,13 +61,27 @@ export default function ResultadoPage() {
   return (
     <>
       <TrackView event="view_resultado" />
-      <section className="mx-auto max-w-xl px-5 py-10">
+      <section className="mx-auto max-w-xl px-5 py-10 [background-image:radial-gradient(70%_20%_at_50%_0%,rgba(255,214,107,.5),transparent)]">
         <p className="eyebrow">Seu resultado</p>
         <h1 className="mb-5 mt-2 text-3xl font-bold leading-tight">{r.title}</h1>
         <p className="card text-lg">{r.tip}</p>
         {r.timeTip && <p className="mt-4">{r.timeTip}</p>}
         {r.moment && (
           <p className="mt-4 rounded-2xl border border-gold/40 bg-teal-soft p-4"><b>Seu melhor momento:</b> {r.moment}.</p>
+        )}
+        {r.insights.length > 0 && (
+          <div className="mt-8 rounded-3xl bg-teal-dark p-6 text-white shadow-xl">
+            <p className="eyebrow !text-gold-light">O que suas respostas mostram</p>
+            <h2 className="mt-1 text-2xl font-bold !text-white">Por que o Laços de Fé combina com a sua casa</h2>
+            <ul className="mt-4 space-y-3">
+              {r.insights.map((t) => (
+                <li key={t} className="flex gap-3">
+                  <span aria-hidden="true" className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gold text-sm font-black text-teal-dark">✓</span>
+                  <span className="text-white/95">{t}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         )}
         <div className="mt-8 flex flex-col gap-3">
           <Link href="/encontro-1" className="btn-primary">Fazer o Encontro 1 grátis</Link>

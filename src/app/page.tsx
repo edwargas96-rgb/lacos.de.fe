@@ -12,6 +12,7 @@ const faq = [
   { q: 'Precisa ter Bíblia?', a: 'Não. A história de cada encontro já vem recontada no celular, com palavras simples.' },
   { q: 'Serve para mais de um filho?', a: 'Sim. Cada encontro tem Versão curta e Versão +, então vocês escolhem a que cabe em cada conversa, mesmo com idades diferentes na mesma casa.' },
   { q: 'Posso pular um dia?', a: 'Sim, nada se perde. Os encontros anteriores ficam sempre acessíveis e você retoma quando puder.' },
+  { q: 'Como funciona a garantia de 30 dias?', a: 'Faça os encontros durante 30 dias. Se, mesmo assim, a sua família não mudou em nada, envie o registro dos encontros que vocês fizeram e devolvemos 100% do valor.' },
   { q: 'Como recebo o acesso?', a: 'Por WhatsApp, em até 1 hora após a compra.' },
   { q: 'Funciona para qualquer denominação cristã?', a: 'O conteúdo é cristão e evita temas que dividem denominações.' },
 ];
@@ -179,11 +180,26 @@ export default function Home() {
         </ul>
       </section>
 
-      <section className="bg-teal-dark text-white" aria-labelledby="garantia">
-        <div className="section text-center">
-          <Icon name="shield" className="mx-auto mb-3 h-14 w-14 text-gold" />
-          <h2 id="garantia" className="mb-3 text-2xl font-extrabold !text-white sm:text-4xl">Garantia incondicional de {site.guaranteeDays} dias</h2>
-          <p className="mx-auto max-w-lg text-white/90">Experimente com a sua família. Se não fizer sentido para vocês, é só pedir o reembolso dentro de {site.guaranteeDays} dias.</p>
+      <section className="relative overflow-hidden bg-teal-dark text-white [background-image:radial-gradient(60%_70%_at_50%_100%,rgba(235,168,35,.3),transparent)]" aria-labelledby="garantia">
+        <div className="section">
+          <div className="text-center">
+            <Icon name="shield" className="mx-auto mb-3 h-14 w-14 text-gold" />
+            <p className="eyebrow !text-gold-light">Risco zero para a sua família</p>
+            <h2 id="garantia" className="mb-8 mt-1 text-2xl font-extrabold !text-white sm:text-4xl">Duas garantias, o risco é nosso</h2>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="rounded-3xl bg-white p-6 text-ink shadow-xl">
+              <p className="font-serif text-4xl font-black text-teal">{site.guaranteeDays} dias</p>
+              <h3 className="mt-1 text-xl font-extrabold">Garantia incondicional</h3>
+              <p className="mt-2">Se não fizer sentido para vocês, é só pedir o reembolso dentro de {site.guaranteeDays} dias, sem precisar explicar.</p>
+            </div>
+            <div className="rounded-3xl border-4 border-gold bg-teal p-6 shadow-xl">
+              <p className="font-serif text-4xl font-black text-gold-light">{site.guarantee30Days} dias</p>
+              <h3 className="mt-1 text-xl font-extrabold !text-white">Garantia Laços de Fé</h3>
+              <p className="mt-2 text-white/95">Faça os encontros por {site.guarantee30Days} dias. Se você comprovar que fez e a sua família não mudou em nada, devolvemos <b>100% do seu dinheiro</b>.</p>
+              {/* TODO: definir e informar o processo de comprovação (ex.: registro dos encontros feitos enviado por WhatsApp). */}
+            </div>
+          </div>
         </div>
       </section>
 

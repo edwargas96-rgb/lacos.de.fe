@@ -3,6 +3,7 @@ import { Fraunces, Nunito_Sans } from 'next/font/google';
 import './globals.css';
 import { site } from '@/config/site';
 import AttributionCapture from '@/components/AttributionCapture';
+import ActivityToasts from '@/components/ActivityToasts';
 
 const fraunces = Fraunces({ subsets: ['latin'], variable: '--font-fraunces', display: 'swap' });
 const nunito = Nunito_Sans({ subsets: ['latin'], variable: '--font-nunito', display: 'swap', adjustFontFallback: false });
@@ -34,6 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Ir para o conteúdo
         </a>
         <AttributionCapture />
+        <ActivityToasts />
         <main id="conteudo">{children}</main>
       </body>
     </html>

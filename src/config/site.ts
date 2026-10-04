@@ -13,7 +13,13 @@ export const site = {
 
   /** Preço em reais (valor inteiro ou decimal). */
   price: 37,
+  /** Preço de cada encontro comprado à parte (a partir do Encontro 2). */
+  priceSingle: 19.9,
+  /** Garantia incondicional (prazo legal de arrependimento). */
   guaranteeDays: 7,
+  /** Garantia estendida: faz os 30 dias e a família não mudou nada, 100% de volta.
+   *  TODO: configurar o mesmo prazo no produto da Cakto e definir como a pessoa comprova (ver README). */
+  guarantee30Days: 30,
 
   /** Hook agressivo do topo da landing. Duas linhas: a segunda recebe destaque. */
   hook: {
@@ -62,6 +68,8 @@ export const site = {
   } as Record<string, string>,
   /** Parâmetro do checkout que recebe o slug do afiliado. Vazio = não enviar. TODO: confirmar na Cakto. */
   checkoutAffiliateParam: '',
+  /** Parâmetro do checkout que recebe o número do encontro avulso. Vazio = não enviar. TODO: confirmar na Cakto. */
+  checkoutEncounterParam: 'encontro',
 
   /** Mostra avisos "TODO: revisão jurídica" em /privacidade e /termos. Desligue após revisar. */
   showLegalTodo: true,
