@@ -5,6 +5,11 @@ export interface Affiliate {
   checkoutUrlB?: string;
   /** Checkout do encontro avulso. Sem ele, usa o do afiliado "default". */
   checkoutUrlAvulso?: string;
+  /**
+   * Checkout por quantidade de encontros (2, 3, 4…), cada um com o preço = quantidade x R$ 19,90.
+   * Sem a quantidade aqui, usa checkoutUrlAvulso. TODO: criar as ofertas na Cakto.
+   */
+  checkoutUrlAvulsoByQty?: Record<number, string>;
   /** Só dígitos com DDI, ex.: 5511999999999. */
   whatsapp?: string;
   active: boolean;

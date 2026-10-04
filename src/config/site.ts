@@ -15,6 +15,8 @@ export const site = {
   price: 37,
   /** Preço de cada encontro comprado à parte (a partir do Encontro 2). */
   priceSingle: 19.9,
+  /** Mínimo de encontros na compra à parte (2 x 19,90 = 39,80, acima do pacote de 30). */
+  avulsoMinimum: 2,
   /** Garantia incondicional (prazo legal de arrependimento). */
   guaranteeDays: 7,
   /** Garantia estendida: faz os 30 dias e a família não mudou nada, 100% de volta.

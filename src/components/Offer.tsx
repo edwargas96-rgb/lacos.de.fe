@@ -31,13 +31,13 @@ export default function Offer({ lead }: { lead?: string }) {
           <div className="rounded-3xl border-2 border-white/30 bg-white/10 p-6 text-center backdrop-blur-sm">
             <p className="mt-2 font-serif text-xl font-bold !text-white">Encontros à parte</p>
             <p className="mt-2 font-serif text-6xl font-black text-gold-light">{formatPrice(site.priceSingle)}</p>
-            <p className="text-sm text-white/80">por encontro · você escolhe qual</p>
+            <p className="text-sm text-white/80">por encontro · você escolhe quais (mínimo de {site.avulsoMinimum})</p>
             <ul className="mt-4 space-y-2 text-left text-sm text-white/95">
-              {['Compre só o encontro que precisar', 'Mesmo formato: história, conversa, atividade e oração', `Garantia incondicional de ${site.guaranteeDays} dias`].map((t) => (
+              {['Monte o seu pacote, a partir de ' + site.avulsoMinimum + ' encontros', 'Mesmo formato: história, conversa, atividade e oração', `Garantia incondicional de ${site.guaranteeDays} dias`].map((t) => (
                 <li key={t} className="flex gap-2"><Icon name="check" className="mt-0.5 h-5 w-5 shrink-0 text-gold-light" />{t}</li>
               ))}
             </ul>
-            <Link href="/avulso" className="btn-light mt-6 w-full">Escolher um encontro</Link>
+            <Link href="/avulso" className="btn-light mt-6 w-full">Escolher os encontros</Link>
           </div>
         </div>
       </div>

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { AFFILIATES } from '@/config/affiliates';
 import { buildCheckoutUrl, captureAttribution, getAttribution, getVariant, type Product } from '@/lib/attribution';
 import { formatPrice, site } from '@/config/site';
+import { parseEncounters } from '@/lib/encounters';
 import { getStorage } from '@/lib/storage';
 import { track } from '@/lib/track';
 import Logo from '@/components/Logo';
@@ -22,9 +23,8 @@ export default function GoPage() {
       const p = params.get('p') ?? 'principal';
       if (p !== 'principal' && p !== 'avulso') throw new Error('produto desconhecido');
       const product: Product = p;
-      const n = Number(params.get('n'));
-      const encounter = product === 'avulso' && Number.isInteger(n) && n >= 2 && n <= 30 ? n : undefined;
-      if (product === 'avulso' && !encounter) throw new Error('encontro inválido');
+      const encounter = product === 'avulso' ? parseEncounters(params.get('n'), site.avulsoMinimum) : undefined;
+      if (product === 'avulso' && !encounter) throw new Error('encontros inválidos');
 
       // UTMs que chegam direto em /go também contam.
       const attr = params.has('a') || [...params.keys()].some((k) => k.startsWith('utm_'))
@@ -34,8 +34,8 @@ export default function GoPage() {
       const variant = product === 'principal' ? getVariant(affiliate, store) : 'A';
       const target = buildCheckoutUrl(attr, affiliate, variant, undefined, undefined, product, encounter);
       setUrl(target);
-      setLabel(product === 'principal' ? `Os 30 encontros · ${formatPrice()}` : `Encontro ${encounter} · ${formatPrice(site.priceSingle)}`);
-      track('checkout_click', { produto: product, ...(encounter ? { encontro: encounter } : {}) });
+      setLabel(product === 'principal' ? `Os 30 encontros · ${formatPrice()}` : `${encounter!.length} encontros (${encounter!.join(', ')}) · ${formatPrice(encounter!.length * site.priceSingle)}`);
+      track('checkout_click', { produto: product, ...(encounter ? { encontros: encounter, quantidade: encounter.length } : {}) });
       redirect = setTimeout(() => window.location.replace(target), 300);
     } catch (err) {
       console.warn('[go] falha ao montar o checkout', err);

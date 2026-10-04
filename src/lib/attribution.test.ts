@@ -103,6 +103,15 @@ describe('buildCheckoutUrl', () => {
     expect(url).toBe('https://pay.test/default-avulso');
   });
 
+  it('avulso com vários encontros envia a lista e escolhe o checkout pela quantidade', () => {
+    const aff = { ...affiliates.ana, checkoutUrlAvulso: 'https://pay.test/avulso', checkoutUrlAvulsoByQty: { 3: 'https://pay.test/avulso-3' } };
+    const three = new URL(buildCheckoutUrl(attr, aff, 'A', {}, '', 'avulso', [4, 9, 12], 'encontros'));
+    expect(three.origin + three.pathname).toBe('https://pay.test/avulso-3');
+    expect(three.searchParams.get('encontros')).toBe('4,9,12');
+    const two = new URL(buildCheckoutUrl(attr, aff, 'A', {}, '', 'avulso', [4, 9], 'encontros'));
+    expect(two.origin + two.pathname).toBe('https://pay.test/avulso');
+  });
+
   it('usa checkoutUrlB na variante B', () => {
     expect(buildCheckoutUrl(attr, affiliates.ana, 'B', {}, '')).toBe('https://pay.test/ana-b');
   });

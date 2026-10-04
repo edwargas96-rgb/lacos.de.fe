@@ -30,7 +30,7 @@ Parâmetros repassados ao checkout: `checkoutParamMap` e `checkoutAffiliateParam
 ## Garantias, preços e encontros avulsos
 - Preços: `price` (30 encontros) e `priceSingle` (R$ 19,90 por encontro) em `src/config/site.ts`.
 - Garantias: `guaranteeDays` (7, incondicional) e `guarantee30Days` (30, "faça os encontros e, se nada mudou, 100% de volta"). TODO: configurar o prazo no produto da Cakto e definir o que vale como comprovação (ex.: registro dos encontros enviado por WhatsApp). Ajustar `/termos`.
-- Avulso: `/avulso` (escolhe o encontro 2 a 30) -> `/go?p=avulso&n=7`. Cada afiliado pode ter `checkoutUrlAvulso`; sem ele usa o do `default`. O número do encontro vai ao checkout no parâmetro `checkoutEncounterParam` (TODO: confirmar na Cakto).
+- Avulso: `/avulso` (marca vários encontros de 2 a 30, mínimo `avulsoMinimum` = 2) -> `/go?p=avulso&n=3,7,9`. O total é quantidade x `priceSingle`. TODO Cakto: o checkout cobra valor fixo, então crie uma oferta por quantidade (2, 3, 4…) com preço = quantidade x R$ 19,90 e cadastre em `checkoutUrlAvulsoByQty`; sem a quantidade, usa `checkoutUrlAvulso`. Cada afiliado pode ter `checkoutUrlAvulso`; sem ele usa o do `default`. O número do encontro vai ao checkout no parâmetro `checkoutEncounterParam` (TODO: confirmar na Cakto).
 
 ## Quiz gamificado
 10 perguntas + 3 cartões de feedback (`src/lib/quiz.ts`: `QUESTIONS`, `FEEDBACKS`). XP, níveis (árvore que cresce) e conquistas. O resultado cita as respostas da pessoa.

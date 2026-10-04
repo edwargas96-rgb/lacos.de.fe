@@ -111,13 +111,19 @@ export function buildCheckoutUrl(
   paramMap: Record<string, string> = site.checkoutParamMap,
   affiliateParam: string = site.checkoutAffiliateParam,
   product: Product = 'principal',
-  encounter?: number,
+  encounter?: number | number[],
   encounterParam: string = site.checkoutEncounterParam,
   fallback: Affiliate | undefined = AFFILIATES[DEFAULT_SLUG],
 ): string {
   let base: string;
   if (product === 'avulso') {
-    base = affiliate.checkoutUrlAvulso ?? fallback?.checkoutUrlAvulso ?? affiliate.checkoutUrl;
+    const qty = Array.isArray(encounter) ? encounter.length : encounter ? 1 : 0;
+    base =
+      affiliate.checkoutUrlAvulsoByQty?.[qty] ??
+      fallback?.checkoutUrlAvulsoByQty?.[qty] ??
+      affiliate.checkoutUrlAvulso ??
+      fallback?.checkoutUrlAvulso ??
+      affiliate.checkoutUrl;
   } else {
     base = variant === 'B' && affiliate.checkoutUrlB ? affiliate.checkoutUrlB : affiliate.checkoutUrl;
   }
@@ -127,6 +133,7 @@ export function buildCheckoutUrl(
     if (value) url.searchParams.set(to, value);
   }
   if (affiliateParam) url.searchParams.set(affiliateParam, attr.slug);
-  if (product === 'avulso' && encounter && encounterParam) url.searchParams.set(encounterParam, String(encounter));
+  const list = Array.isArray(encounter) ? encounter : encounter ? [encounter] : [];
+  if (product === 'avulso' && list.length > 0 && encounterParam) url.searchParams.set(encounterParam, list.join(','));
   return url.toString();
 }
