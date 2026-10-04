@@ -6,6 +6,8 @@ import Logo from '@/components/Logo';
 import Testimonials from '@/components/Testimonials';
 import Offer from '@/components/Offer';
 import Footer from '@/components/Footer';
+import CtaPair from '@/components/CtaPair';
+import StickyCta from '@/components/StickyCta';
 import { Icon, Rays, Sun, Wave } from '@/components/Illustrations';
 
 const faq = [
@@ -37,6 +39,9 @@ export default function Home() {
             {site.hook.line1}
             <span className="mt-2 block text-gold-light">{site.hook.line2}</span>
           </h1>
+          <div className="mt-7">
+            <CtaPair dark />
+          </div>
         </div>
         <Wave fill="#FFF5DB" />
       </header>
@@ -68,6 +73,7 @@ export default function Home() {
           <h2 id="identificacao" className="font-serif text-2xl font-extrabold leading-snug sm:text-4xl">
             Você quer que a fé faça parte da sua casa, mas não sabe como começar, o tempo aperta e o celular parece sempre mais interessante.
           </h2>
+          <CtaPair onGold className="mt-7" />
         </div>
         <Wave fill="#FFF5DB" />
       </section>
@@ -107,6 +113,7 @@ export default function Home() {
             </p>
           </div>
         </div>
+        <CtaPair className="mx-auto max-w-xl px-5 pb-12" />
       </section>
 
       <section className="section text-center" aria-labelledby="o-que-e">
@@ -131,6 +138,7 @@ export default function Home() {
           <p className="mt-5 rounded-3xl border-2 border-gold bg-teal-dark p-5 text-white">
             <b className="text-gold-light">Plano B.</b> Quando ele não quer participar, cada encontro traz uma alternativa pronta para você usar.
           </p>
+          <CtaPair dark className="mt-8" />
         </div>
         <Wave fill="#FFF5DB" />
       </section>
@@ -153,6 +161,7 @@ export default function Home() {
             </li>
           ))}
         </ul>
+        <CtaPair className="mt-8" />
       </section>
 
       <section className="bg-sand" aria-labelledby="para-quem">
@@ -178,6 +187,7 @@ export default function Home() {
             <li key={t} className={`rounded-3xl p-5 font-semibold shadow-md ${i === 1 ? 'bg-gold text-teal-dark' : 'bg-white'}`}>{t}</li>
           ))}
         </ul>
+        <CtaPair className="mt-8" />
       </section>
 
       <section className="relative overflow-hidden bg-teal-dark text-white [background-image:radial-gradient(60%_70%_at_50%_100%,rgba(235,168,35,.3),transparent)]" aria-labelledby="garantia">
@@ -218,10 +228,12 @@ export default function Home() {
             </details>
           ))}
         </div>
+        <CtaPair className="mt-8" />
       </section>
 
       <Offer />
       <Footer />
+      <StickyCta />
     </>
   );
 }
