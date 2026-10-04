@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { site } from '@/config/site';
 import TrackView from '@/components/TrackView';
 import ProductImageSlot from '@/components/ProductImageSlot';
-import MockupApp from '@/components/MockupApp';
 import Testimonials from '@/components/Testimonials';
 import Offer from '@/components/Offer';
 import Footer from '@/components/Footer';
@@ -29,7 +28,7 @@ export default function Home() {
       <TrackView event="view_landing" />
 
       {/* HERO: 1) hook  2) Laços de Fé  3) espaço da foto */}
-      <header className="relative overflow-hidden bg-cream">
+      <header className="relative overflow-hidden bg-cream [background-image:radial-gradient(60%_40%_at_50%_30%,rgba(224,169,59,.22),transparent)]">
         <Sun className="pointer-events-none absolute -right-6 -top-6 h-28 w-28 opacity-70 sm:h-40 sm:w-40" />
         <div className="mx-auto max-w-3xl px-5 pb-10 pt-10 text-center sm:pt-14">
           <h1 className="font-serif text-[2rem] font-black leading-[1.1] sm:text-5xl">
@@ -37,9 +36,8 @@ export default function Home() {
             <span className="mt-1 block text-gold-dark">{site.hook.line2}</span>
           </h1>
 
-          <p className="mt-6 font-serif text-2xl font-bold tracking-wide text-teal">
-            <span aria-hidden="true">✦ </span>{site.brand}<span aria-hidden="true"> ✦</span>
-          </p>
+          <p className="mt-6 font-serif text-3xl font-bold tracking-wide text-teal">{site.brand}</p>
+          <div className="gold-rule mt-3" aria-hidden="true" />
 
           <div className="mx-auto mt-6 max-w-xl">
             <ProductImageSlot />
@@ -56,10 +54,10 @@ export default function Home() {
             <Link href="/encontro-1" className="btn-secondary">Ver o Encontro 1 grátis</Link>
           </div>
         </div>
-        <Hills className="block h-16 w-full" />
+        <Hills className="block h-14 w-full" />
       </header>
 
-      <section className="bg-teal text-white" aria-labelledby="identificacao">
+      <section className="bg-teal-dark text-white" aria-labelledby="identificacao">
         <div className="mx-auto max-w-3xl px-5 py-12 text-center">
           <h2 id="identificacao" className="font-serif text-2xl font-bold leading-snug !text-white sm:text-3xl">
             Você quer que a fé faça parte da sua casa, mas não sabe como começar, o tempo aperta e o celular parece sempre mais interessante.
@@ -75,23 +73,20 @@ export default function Home() {
       </section>
 
       <section className="bg-sand/60" aria-labelledby="como-e">
-        <div className="section grid items-center gap-8 sm:grid-cols-2">
-          <div>
-            <h2 id="como-e" className="mb-4 text-2xl font-bold sm:text-3xl">Como é um encontro</h2>
-            <p className="mb-4">De 10 a 15 minutos, em 4 blocos:</p>
-            <ol className="space-y-3">
-              {blocks.map(([t, d], i) => (
-                <li key={t} className="flex gap-3">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-teal font-bold text-white" aria-hidden="true">{i + 1}</span>
-                  <span><b>{t}.</b> {d}</span>
-                </li>
-              ))}
-            </ol>
-            <p className="card mt-5 !bg-cream">
-              <b>Plano B.</b> Quando ele não quer participar, cada encontro traz uma alternativa pronta para você usar.
-            </p>
-          </div>
-          <MockupApp />
+        <div className="section">
+          <p className="eyebrow text-center">10 a 15 minutos</p>
+          <h2 id="como-e" className="mb-6 mt-1 text-center text-2xl font-bold sm:text-3xl">Como é um encontro</h2>
+          <ol className="grid gap-3 sm:grid-cols-2">
+            {blocks.map(([t, d], i) => (
+              <li key={t} className="card flex gap-3">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-teal font-bold text-gold-light" aria-hidden="true">{i + 1}</span>
+                <span><b className="font-serif text-lg text-teal-dark">{t}</b><br />{d}</span>
+              </li>
+            ))}
+          </ol>
+          <p className="card mt-4 !border-gold !bg-cream">
+            <b>Plano B.</b> Quando ele não quer participar, cada encontro traz uma alternativa pronta para você usar.
+          </p>
         </div>
       </section>
 

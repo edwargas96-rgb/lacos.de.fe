@@ -7,6 +7,7 @@ import { getStorage, readJSON, writeJSON } from '@/lib/storage';
 import { track } from '@/lib/track';
 import TrackView from '@/components/TrackView';
 import Footer from '@/components/Footer';
+import Skeleton from '@/components/Skeleton';
 import { Encontro1Illustration } from '@/components/Illustrations';
 
 const DONE_KEY = 'lf_e1_done';
@@ -17,6 +18,7 @@ export default function Encontro1Page() {
   const [both, setBoth] = useState(false);
   const [rating, setRating] = useState(0);
   const [done, setDone] = useState(false);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     const store = getStorage();
@@ -28,6 +30,7 @@ export default function Encontro1Page() {
       setDone(true);
       setRating(d.rating);
     }
+    setReady(true);
   }, []);
 
   function finish() {
@@ -42,7 +45,7 @@ export default function Encontro1Page() {
       <TrackView event="view_encontro1" />
       <article className="mx-auto max-w-2xl px-5 py-8">
         <Link href="/" className="inline-flex min-h-[44px] items-center text-sm font-bold text-teal underline">← Voltar ao início</Link>
-        <p className="mt-2 text-sm font-bold uppercase tracking-wider text-gold-dark">Encontro {e.numero} · grátis · 10 a 15 min</p>
+        <p className="eyebrow mt-2">Encontro {e.numero} · grátis · 10 a 15 min</p>
         <h1 className="mt-1 text-3xl font-bold sm:text-4xl">{e.titulo}</h1>
         <p className="mt-1 text-sm text-ink/70">{e.passagem}</p>
 
@@ -50,14 +53,15 @@ export default function Encontro1Page() {
 
         <div className="card mb-8">
           <p className="mb-2 font-bold">Versão do encontro</p>
+          {!ready ? <div aria-busy="true"><Skeleton className="h-12" /></div> : (
           <div role="group" aria-label="Escolher versão" className="grid grid-cols-2 gap-2">
             {(['curta', 'mais'] as const).map((v) => (
               <button key={v} type="button" aria-pressed={version === v} onClick={() => setVersion(v)}
-                className={`min-h-[48px] rounded-full border-2 border-teal font-bold ${version === v ? 'bg-teal text-white' : 'bg-white text-teal'}`}>
+                className={`min-h-[48px] rounded-full border-2 border-teal font-bold ${version === v ? 'bg-teal text-gold-light' : 'bg-white text-teal'}`}>
                 {v === 'curta' ? 'Versão curta' : 'Versão +'}
               </button>
             ))}
-          </div>
+          </div>)}
           {both && <p className="mt-2 text-sm">Como você tem idades diferentes, alterne entre as versões conforme quem estiver com você.</p>}
         </div>
 

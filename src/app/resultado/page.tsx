@@ -8,21 +8,44 @@ import { AFFILIATES } from '@/config/affiliates';
 import TrackView from '@/components/TrackView';
 import Offer from '@/components/Offer';
 import Footer from '@/components/Footer';
+import Skeleton from '@/components/Skeleton';
+import { Sun } from '@/components/Illustrations';
 
 export default function ResultadoPage() {
   const [answers, setAnswers] = useState<Answers | null>(null);
   const [whatsapp, setWhatsapp] = useState<string | undefined>();
   const [ready, setReady] = useState(false);
+  const [msg, setMsg] = useState(0);
+  const MESSAGES = ['Lendo as suas respostas…', 'Escolhendo o seu ponto de partida…', 'Separando o Encontro 1 para vocês…'];
 
   useEffect(() => {
     const store = getStorage();
     setAnswers(readJSON<Answers>(store, ANSWERS_KEY));
     const slug = getAttribution(store).slug;
     setWhatsapp(AFFILIATES[slug]?.whatsapp);
-    setReady(true);
+    // Pequena pausa de "montagem" do resultado (mais curta para quem prefere menos movimento).
+    const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    const total = reduce ? 300 : 2400;
+    const steps = [0, 1, 2].map((i) => setTimeout(() => setMsg(i), (total / 3) * i));
+    const done = setTimeout(() => setReady(true), total);
+    return () => [...steps, done].forEach(clearTimeout);
   }, []);
 
-  if (!ready) return null;
+  if (!ready) {
+    return (
+      <div className="mx-auto max-w-xl px-5 py-12" aria-busy="true">
+        <div className="mb-8 flex flex-col items-center text-center">
+          <Sun className="h-20 w-20 animate-spin [animation-duration:6s]" />
+          <p role="status" aria-live="polite" className="mt-4 font-serif text-xl font-bold text-teal">{MESSAGES[msg]}</p>
+          <div className="mt-4 h-2 w-48 overflow-hidden rounded-full bg-sand"><div className="h-full w-1/2 animate-pulse rounded-full bg-gold" /></div>
+        </div>
+        <Skeleton className="mb-4 h-10 w-11/12" />
+        <Skeleton className="mb-4 h-28" />
+        <Skeleton className="mb-4 h-16" />
+        <Skeleton className="h-14" />
+      </div>
+    );
+  }
 
   if (!isComplete(answers)) {
     return (
@@ -39,11 +62,12 @@ export default function ResultadoPage() {
     <>
       <TrackView event="view_resultado" />
       <section className="mx-auto max-w-xl px-5 py-10">
-        <h1 className="mb-5 text-3xl font-bold leading-tight">{r.title}</h1>
+        <p className="eyebrow">Seu resultado</p>
+        <h1 className="mb-5 mt-2 text-3xl font-bold leading-tight">{r.title}</h1>
         <p className="card text-lg">{r.tip}</p>
         {r.timeTip && <p className="mt-4">{r.timeTip}</p>}
         {r.moment && (
-          <p className="mt-4 rounded-2xl bg-teal-soft p-4"><b>Seu melhor momento:</b> {r.moment}.</p>
+          <p className="mt-4 rounded-2xl border border-gold/40 bg-teal-soft p-4"><b>Seu melhor momento:</b> {r.moment}.</p>
         )}
         <div className="mt-8 flex flex-col gap-3">
           <Link href="/encontro-1" className="btn-primary">Fazer o Encontro 1 grátis</Link>

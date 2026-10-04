@@ -28,10 +28,10 @@ export const site = {
    * Enquanto src estiver vazio, aparece um espaço reservado.
    */
   productImage: {
-    src: '',
-    alt: 'Imagem do produto Laços de Fé',
-    width: 1200,
-    height: 900,
+    src: '/produto.webp',
+    alt: 'Celular mostrando o app Laços de Fé: 30 encontros em família, com o caminho de 30 dias, 10 a 15 minutos por encontro e um novo encontro por dia',
+    width: 1024,
+    height: 1536,
   },
 
   /** Teste de preço A/B (só vale para afiliados com checkoutUrlB). */
