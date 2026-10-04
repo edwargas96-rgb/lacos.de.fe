@@ -24,8 +24,7 @@ export const DEFAULT_SLUG = 'default';
 export const AFFILIATES: Record<string, Affiliate> = {
   default: {
     name: 'Meu link',
-    // TODO: colocar o checkout real da Cakto
-    checkoutUrl: 'https://pay.cakto.com.br/TODO-default',
+    checkoutUrl: 'https://pay.cakto.com.br/34vsp2i_1172299',
     // TODO: checkout real do encontro avulso (R$ 19,90)
     checkoutUrlAvulso: 'https://pay.cakto.com.br/TODO-avulso',
     active: true,
