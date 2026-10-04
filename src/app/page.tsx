@@ -15,7 +15,7 @@ const faq = [
   { q: 'Serve para mais de um filho?', a: 'Sim. Cada encontro tem Versão curta e Versão +, então vocês escolhem a que cabe em cada conversa, mesmo com idades diferentes na mesma casa.' },
   { q: 'Posso pular um dia?', a: 'Sim, nada se perde. Os encontros anteriores ficam sempre acessíveis e você retoma quando puder.' },
   { q: 'Como funciona a garantia de 30 dias?', a: 'Faça os encontros durante 30 dias. Se, mesmo assim, a sua família não mudou em nada, envie o registro dos encontros que vocês fizeram e devolvemos 100% do valor.' },
-  { q: 'Como recebo o acesso?', a: 'Por WhatsApp, em até 1 hora após a compra.' },
+  { q: 'Como recebo o acesso?', a: 'Por e-mail, assim que o pagamento for confirmado: você recebe o link e o login da área dos encontros. Se não chegar, olhe o spam ou chame o nosso suporte.' },
   { q: 'Funciona para qualquer denominação cristã?', a: 'O conteúdo é cristão e evita temas que dividem denominações.' },
 ];
 

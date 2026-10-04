@@ -15,8 +15,8 @@ export const site = {
   price: 37.9,
   /** Preço de cada encontro comprado à parte (a partir do Encontro 2). */
   priceSingle: 19.9,
-  /** Mínimo de encontros na compra à parte (2 x 19,90 = 39,80, acima do pacote de 30). */
-  avulsoMinimum: 2,
+  /** Mínimo de encontros na compra à parte (5 x 19,90 = 99,50, bem acima do pacote de 30). */
+  avulsoMinimum: 5,
   /** Garantia incondicional (prazo legal de arrependimento). */
   guaranteeDays: 7,
   /** Garantia estendida: faz os 30 dias e a família não mudou nada, 100% de volta.
@@ -51,6 +51,14 @@ export const site = {
   founder: {
     name: 'Maria Almeida',
     photo: { src: '/maria.webp', width: 939, height: 1676, alt: 'Maria Almeida, criadora do Laços de Fé, sorrindo com a mão apoiada no rosto' },
+  },
+
+  /** Suporte e entrega (usados na página /obrigado). */
+  support: {
+    /** WhatsApp de suporte: só dígitos com DDI (ex.: 5511999999999). Vazio = botão oculto. TODO: preencher. */
+    whatsapp: '',
+    /** Link de login da área de membros (Cakto Members). Vazio = botão oculto. TODO: preencher. */
+    membersUrl: '',
   },
 
   /** Janela first-touch da atribuição de afiliado. */

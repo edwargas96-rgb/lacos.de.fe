@@ -27,10 +27,13 @@ Parâmetros repassados ao checkout: `checkoutParamMap` e `checkoutAffiliateParam
 ## Medição
 `src/lib/track.ts`. Em dev, loga no console. Em produção, se `NEXT_PUBLIC_CF_BEACON_TOKEN` existir, carrega o Cloudflare Web Analytics. Atenção: o Cloudflare mede visitas/páginas, não eventos customizados. Para gravar os eventos (quiz_complete, checkout_click…), use `registerSink(fn)` na próxima etapa (ex.: Supabase).
 
+## Página de obrigado (`/obrigado`)
+Configure na Cakto o redirecionamento depois do pagamento para `https://SEU-DOMINIO/obrigado`. Preencha `support.whatsapp` e `support.membersUrl` em `src/config/site.ts` (sem eles, os botões ficam ocultos). A página não é indexada pelo Google.
+
 ## Garantias, preços e encontros avulsos
 - Preços: `price` (30 encontros) e `priceSingle` (R$ 19,90 por encontro) em `src/config/site.ts`.
 - Garantias: `guaranteeDays` (7, incondicional) e `guarantee30Days` (30, "faça os encontros e, se nada mudou, 100% de volta"). TODO: configurar o prazo no produto da Cakto e definir o que vale como comprovação (ex.: registro dos encontros enviado por WhatsApp). Ajustar `/termos`.
-- Avulso: `/avulso` (marca vários encontros de 2 a 30, mínimo `avulsoMinimum` = 2) -> `/go?p=avulso&n=3,7,9`. O total é quantidade x `priceSingle`. TODO Cakto: o checkout cobra valor fixo, então crie uma oferta por quantidade (2, 3, 4…) com preço = quantidade x R$ 19,90 e cadastre em `checkoutUrlAvulsoByQty`; sem a quantidade, usa `checkoutUrlAvulso`. Cada afiliado pode ter `checkoutUrlAvulso`; sem ele usa o do `default`. O número do encontro vai ao checkout no parâmetro `checkoutEncounterParam` (TODO: confirmar na Cakto).
+- Avulso: `/avulso` (marca vários encontros de 2 a 30, mínimo `avulsoMinimum` = 5) -> `/go?p=avulso&n=3,7,9`. O total é quantidade x `priceSingle`. TODO Cakto: o checkout cobra valor fixo, então crie uma oferta por quantidade (5, 6, 7…) com preço = quantidade x R$ 19,90 e cadastre em `checkoutUrlAvulsoByQty`; sem a quantidade, usa `checkoutUrlAvulso`. Cada afiliado pode ter `checkoutUrlAvulso`; sem ele usa o do `default`. O número do encontro vai ao checkout no parâmetro `checkoutEncounterParam` (TODO: confirmar na Cakto).
 
 ## Quiz gamificado
 10 perguntas + 3 cartões de feedback (`src/lib/quiz.ts`: `QUESTIONS`, `FEEDBACKS`). XP, níveis (árvore que cresce) e conquistas. O resultado cita as respostas da pessoa.
