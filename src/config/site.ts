@@ -56,7 +56,7 @@ export const site = {
   /** Suporte e entrega (usados na página /obrigado). */
   support: {
     /** WhatsApp de suporte: só dígitos com DDI (ex.: 5511999999999). Vazio = botão oculto. TODO: preencher. */
-    whatsapp: '',
+    whatsapp: '5541989037815',
     /** Link de login da área de membros (Cakto Members). Vazio = botão oculto. TODO: preencher. */
     membersUrl: '',
   },
