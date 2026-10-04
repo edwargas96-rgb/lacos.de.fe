@@ -35,6 +35,9 @@ Parâmetros repassados ao checkout: `checkoutParamMap` e `checkoutAffiliateParam
 ## Quiz gamificado
 10 perguntas + 3 cartões de feedback (`src/lib/quiz.ts`: `QUESTIONS`, `FEEDBACKS`). XP, níveis (árvore que cresce) e conquistas. O resultado cita as respostas da pessoa.
 
+## Depoimentos
+`src/content/testimonials.ts`: `testimonials` (reais; vazio = seção oculta no site) e `sampleTestimonials` (modelos, só visíveis em `/?preview=depoimentos` ou em desenvolvimento, com etiqueta EXEMPLO).
+
 ## Notificações de prova social
 `src/content/activity.ts` está vazio de propósito: só coloque fatos REAIS (ex.: dados do banco na Etapa 2). Números inventados são propaganda enganosa.
 
