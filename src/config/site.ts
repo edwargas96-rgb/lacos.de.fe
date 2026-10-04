@@ -39,6 +39,12 @@ export const site = {
 
   logo: { src: '/logo.webp', width: 2000, height: 667 },
 
+  /** Criadora do método (seção "Conheça a criadora" na landing). */
+  founder: {
+    name: 'Maria Almeida',
+    photo: { src: '/maria.webp', width: 939, height: 1676, alt: 'Maria Almeida, criadora do Laços de Fé, sorrindo com a mão apoiada no rosto' },
+  },
+
   /** Janela first-touch da atribuição de afiliado. */
   attributionWindowDays: 60,
 

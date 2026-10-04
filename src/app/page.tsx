@@ -71,6 +71,43 @@ export default function Home() {
         <Wave fill="#FFF5DB" />
       </section>
 
+      <section className="bg-sand" aria-labelledby="criadora">
+        <div className="mx-auto grid max-w-4xl items-center gap-8 px-5 py-14 sm:grid-cols-5 sm:py-20">
+          <div className="sm:col-span-2">
+            <div className="relative mx-auto max-w-[300px]">
+              <div aria-hidden="true" className="absolute -inset-2 rotate-3 rounded-[2rem] bg-gold" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={site.founder.photo.src}
+                alt={site.founder.photo.alt}
+                width={site.founder.photo.width}
+                height={site.founder.photo.height}
+                loading="lazy"
+                className="relative aspect-[4/5] w-full rounded-[2rem] border-4 border-white object-cover object-top shadow-xl"
+              />
+            </div>
+            <p className="mt-5 text-center font-serif text-lg font-bold text-teal-dark">{site.founder.name}</p>
+            <p className="text-center text-sm text-ink/75">Esposa, mãe e criadora do {site.brand}</p>
+          </div>
+          <div className="space-y-4 text-lg sm:col-span-3">
+            <p className="eyebrow">Quem criou o método</p>
+            <h2 id="criadora" className="!mt-1 text-2xl font-extrabold sm:text-4xl">Conheça a criadora do {site.brand}</h2>
+            <p>
+              <b>{site.founder.name}</b> é esposa, mãe e criadora do <b>{site.brand}</b>. Após um período afastada da igreja, viveu dificuldades no casamento, com discussões frequentes e o celular ocupando espaço na convivência familiar.
+            </p>
+            <p>
+              Ao se reaproximar de Deus, Maria conta que sentiu uma missão: ajudar outras famílias a encontrar tempo para estar juntas e compartilhar a fé. Dessa motivação nasceu o {site.brand}.
+            </p>
+            <p>
+              O método oferece <b>30 encontros de 10 a 15 minutos</b>, com histórias bíblicas ilustradas, perguntas para conversar, atividades fora da tela e orações simples. Também inclui orientações para os pais e um Plano B quando o filho não quiser participar.
+            </p>
+            <p>
+              Seu propósito é facilitar a leitura da Bíblia em família e criar oportunidades de diálogo, presença e conexão, respeitando o ritmo de cada lar.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section className="section text-center" aria-labelledby="o-que-e">
         <p className="eyebrow">O que é</p>
         <h2 id="o-que-e" className="mt-2 text-2xl font-extrabold sm:text-4xl">Um roteiro guiado para <span className="text-gold-dark">você</span> conduzir</h2>
