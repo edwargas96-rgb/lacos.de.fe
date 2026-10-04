@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+<rect width="1200" height="630" fill="#FBF6EC"/>
+<g stroke="#D4A94F" stroke-width="8" stroke-linecap="round">
+<line x1="1020" y1="100" x2="1020" y2="60"/><line x1="1100" y1="180" x2="1140" y2="180"/><line x1="940" y1="180" x2="900" y2="180"/><line x1="1077" y1="123" x2="1105" y2="95"/><line x1="963" y1="123" x2="935" y2="95"/></g>
+<circle cx="1020" cy="180" r="62" fill="#D4A94F"/>
+<path d="M0 470 Q300 380 600 460 T1200 440 V630 H0Z" fill="#D9E7E8"/>
+<path d="M0 540 Q300 480 600 535 T1200 520 V630 H0Z" fill="#0F4C5C"/>
+<text x="80" y="210" font-family="Georgia, serif" font-weight="700" font-size="96" fill="#0A3640">Laços de Fé</text>
+<text x="80" y="300" font-family="Georgia, serif" font-size="44" fill="#0F4C5C">30 encontros de 15 minutos para</text>
+<text x="80" y="356" font-family="Georgia, serif" font-size="44" fill="#0F4C5C">abrir a Bíblia em família</text>
+<text x="80" y="420" font-family="Arial, sans-serif" font-size="30" fill="#8A6A1F">Experimente o Encontro 1 grátis</text>
+</svg>
