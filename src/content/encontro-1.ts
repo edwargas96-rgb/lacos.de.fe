@@ -3,8 +3,12 @@ export interface Encontro {
   titulo: string;
   passagem: string;
   historia: string[];
+  /** Versão curta da história (leitura rápida). */
+  historiaCurta: string[];
+  /** Só na Versão +: aprofundamento extra. */
+  aprofundamento: { titulo: string; texto: string };
   perguntas: { curta: string[]; mais: string[] };
-  atividade: { titulo: string; minutos: number; descricao: string; materiais: string };
+  atividade: { titulo: string; minutos: number; descricao: string; materiais: string; extraMais: string };
   oracao: string;
   planoB: string;
   dicaPais: string;
@@ -22,6 +26,16 @@ export const encontro1: Encontro = {
     'As pessoas reclamaram: como Jesus iria à casa de um homem assim? Mas Zaqueu, tocado pela bondade de Jesus, decidiu mudar: prometeu devolver o que tinha tomado e dividir seus bens com os pobres.',
     'Jesus disse que, naquele dia, a salvação tinha chegado àquela casa, porque ele veio procurar quem estava perdido.',
   ],
+  historiaCurta: [
+    'Zaqueu era um homem rico e baixinho, que cobrava impostos e não era querido pelas pessoas.',
+    'Quando soube que Jesus passaria por Jericó, quis muito vê-lo e subiu numa árvore para enxergar por cima da multidão.',
+    'Jesus parou, olhou para cima e chamou Zaqueu pelo nome: "Hoje eu quero ficar na sua casa." Zaqueu desceu feliz e decidiu mudar de vida.',
+  ],
+  aprofundamento: {
+    titulo: 'Para ir mais fundo',
+    texto:
+      'Repare que Jesus chamou Zaqueu pelo nome antes de ele mudar. Primeiro veio o convite, depois a decisão. Conversem: em que situações o convite funciona melhor do que a cobrança, em casa e fora dela?',
+  },
   perguntas: {
     curta: [
       'Por que Zaqueu subiu na árvore?',
@@ -40,6 +54,7 @@ export const encontro1: Encontro = {
     descricao:
       'Cada um escreve num papel o nome de alguém (família, escola, trabalho) que precisa de um gesto de carinho e escolhe um gesto pequeno para fazer amanhã.',
     materiais: 'Papel e caneta',
+    extraMais: 'Na Versão +, cada um também conta em voz alta por que escolheu aquele nome e combina quando vai fazer o gesto.',
   },
   oracao:
     'Deus, obrigado porque o Senhor conhece o nome de cada um de nós. Ajuda nossa família a ser gentil com quem se sente sozinho. Amém.',

@@ -70,12 +70,17 @@ export default function Encontro1Page() {
               </button>
             ))}
           </div>)}
+          <p className="mt-3 rounded-xl bg-teal-soft p-3 text-sm" aria-live="polite">
+            {version === 'curta'
+              ? <><b>Versão curta:</b> história resumida, perguntas simples e atividade rápida. Cerca de 10 minutos.</>
+              : <><b>Versão +:</b> história completa, perguntas para aprofundar, atividade com conversa extra e um bloco “Para ir mais fundo”. Cerca de 15 minutos.</>}
+          </p>
           {both && <p className="mt-2 text-sm">Como você tem idades diferentes, alterne entre as versões conforme quem estiver com você.</p>}
         </div>
 
         <section aria-labelledby="h-historia" className="mb-8">
           <h2 id="h-historia" className="mb-3 flex items-center gap-3 text-2xl font-bold"><span className="flex h-9 w-9 items-center justify-center rounded-full bg-gold font-black text-teal-dark" aria-hidden="true">1</span>História</h2>
-          <div className="card space-y-3 text-lg leading-relaxed">{e.historia.map((p) => <p key={p}>{p}</p>)}</div>
+          <div className="card space-y-3 text-lg leading-relaxed">{(version === 'curta' ? e.historiaCurta : e.historia).map((p) => <p key={p}>{p}</p>)}</div>
         </section>
 
         <section aria-labelledby="h-conversa" className="mb-8">
@@ -83,12 +88,20 @@ export default function Encontro1Page() {
           <ol className="space-y-3">{e.perguntas[version].map((q, i) => <li key={q} className="card flex gap-3 text-lg"><span className="font-serif text-2xl font-black text-gold-dark">{i + 1}</span><span>{q}</span></li>)}</ol>
         </section>
 
+        {version === 'mais' && (
+          <section aria-labelledby="h-fundo" className="mb-8 rounded-3xl border-2 border-gold bg-white p-5">
+            <h2 id="h-fundo" className="mb-2 text-xl font-bold">{e.aprofundamento.titulo}</h2>
+            <p>{e.aprofundamento.texto}</p>
+          </section>
+        )}
+
         <section aria-labelledby="h-atividade" className="mb-8">
           <h2 id="h-atividade" className="mb-3 flex items-center gap-3 text-2xl font-bold"><span className="flex h-9 w-9 items-center justify-center rounded-full bg-gold font-black text-teal-dark" aria-hidden="true">3</span>Atividade fora da tela</h2>
           <div className="card">
             <p className="font-bold">{e.atividade.titulo} · {e.atividade.minutos} min</p>
             <p className="mt-1">{e.atividade.descricao}</p>
             <p className="mt-2 text-sm"><b>Materiais:</b> {e.atividade.materiais}</p>
+            {version === 'mais' && <p className="mt-3 rounded-xl bg-teal-soft p-3 text-sm"><b>Extra:</b> {e.atividade.extraMais}</p>}
           </div>
         </section>
 
