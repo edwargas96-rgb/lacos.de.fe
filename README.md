@@ -50,7 +50,7 @@ Defina `NEXT_PUBLIC_SITE_URL` (para o Open Graph) e, opcionalmente, `NEXT_PUBLIC
 - **Vercel:** importe o repositório; o Next detecta o export estático.
 
 ## Links de teste
-- `/?a=default`, `/?a=exemplo1&utm_source=tiktok`, `/go?p=principal`
+- `/?a=default`, `/?a=default&utm_source=tiktok` (os afiliados de exemplo estão inativos até terem checkout real), `/go?p=principal`
 - `/quiz`, `/resultado`, `/encontro-1`, `/privacidade`, `/termos`
 
 ## Checklist (TODO)

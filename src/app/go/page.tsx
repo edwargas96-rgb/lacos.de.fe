@@ -23,6 +23,7 @@ export default function GoPage() {
       const p = params.get('p') ?? 'principal';
       if (p !== 'principal' && p !== 'avulso') throw new Error('produto desconhecido');
       const product: Product = p;
+      if (product === 'avulso' && !site.avulsoEnabled) throw new Error('compra avulsa desativada');
       const encounter = product === 'avulso' ? parseEncounters(params.get('n'), site.avulsoMinimum) : undefined;
       if (product === 'avulso' && !encounter) throw new Error('encontros inválidos');
 

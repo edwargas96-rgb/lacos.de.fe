@@ -9,10 +9,13 @@ export const site = {
   description:
     '30 encontros de 15 minutos para abrir a Bíblia em família: uma história curta, três perguntas, uma atividade longe da tela e uma oração.',
   /** URL pública (para Open Graph). Defina NEXT_PUBLIC_SITE_URL no deploy. */
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://lacosdefe.example.com',
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://lacosdefe.vercel.app',
 
   /** Preço em reais (valor inteiro ou decimal). */
   price: 37.9,
+  /** Liga a compra de encontros à parte (/avulso). Desligada até existirem os checkouts avulsos na Cakto. */
+  avulsoEnabled: false,
+
   /** Preço de cada encontro comprado à parte (a partir do Encontro 2). */
   priceSingle: 19.9,
   /** Mínimo de encontros na compra à parte (5 x 19,90 = 99,50, bem acima do pacote de 30). */
@@ -38,19 +41,19 @@ export const site = {
   productImage: {
     src: '/produto.webp',
     alt: 'Celular mostrando o app Laços de Fé: 30 encontros em família, com o caminho de 30 dias, 10 a 15 minutos por encontro e um novo encontro por dia',
-    width: 1024,
-    height: 1536,
+    width: 700,
+    height: 1050,
   },
 
   /** Teste de preço A/B (só vale para afiliados com checkoutUrlB). */
   abTestEnabled: false,
 
-  logo: { src: '/logo.webp', width: 2000, height: 667 },
+  logo: { src: '/logo.webp', width: 720, height: 240 },
 
   /** Criadora do método (seção "Conheça a criadora" na landing). */
   founder: {
     name: 'Maria Almeida',
-    photo: { src: '/maria.webp', width: 939, height: 1676, alt: 'Maria Almeida, criadora do Laços de Fé, sorrindo com a mão apoiada no rosto' },
+    photo: { src: '/maria.webp', width: 640, height: 1142, alt: 'Maria Almeida, criadora do Laços de Fé, sorrindo com a mão apoiada no rosto' },
   },
 
   /** Suporte e entrega (usados na página /obrigado). */

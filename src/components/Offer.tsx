@@ -9,12 +9,12 @@ export default function Offer({ lead }: { lead?: string }) {
       <Sun className="pointer-events-none absolute -left-8 -top-8 h-32 w-32 opacity-25" />
       <div className="relative mx-auto max-w-3xl px-5 py-16">
         <div className="text-center">
-          <p className="eyebrow !text-gold-light">Escolha como começar</p>
+          <p className="eyebrow !text-gold-light">{site.avulsoEnabled ? 'Escolha como começar' : 'Sua oferta'}</p>
           <h2 id="oferta-titulo" className="mb-2 mt-2 text-3xl font-bold !text-white sm:text-4xl">{site.productName}</h2>
           {lead && <p className="mb-2 text-white/90">{lead}</p>}
         </div>
 
-        <div className="mt-8 grid gap-5 sm:grid-cols-2">
+        <div className={`mt-8 grid gap-5 ${site.avulsoEnabled ? 'sm:grid-cols-2' : 'mx-auto max-w-md'}`}>
           <div className="relative rounded-3xl border-4 border-gold bg-white p-6 text-center text-ink shadow-2xl">
             <span className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-gold px-4 py-1 text-xs font-extrabold uppercase tracking-wider text-teal-dark">Opção completa</span>
             <p className="mt-2 font-serif text-xl font-bold text-teal-dark">Os 30 encontros</p>
@@ -28,6 +28,7 @@ export default function Offer({ lead }: { lead?: string }) {
             <Link href="/go?p=principal" className="btn-primary mt-6 w-full">Quero os 30 encontros</Link>
           </div>
 
+          {site.avulsoEnabled && (
           <div className="rounded-3xl border-2 border-white/30 bg-white/10 p-6 text-center backdrop-blur-sm">
             <p className="mt-2 font-serif text-xl font-bold !text-white">Encontros à parte</p>
             <p className="mt-2 font-serif text-6xl font-black text-gold-light">{formatPrice(site.priceSingle)}</p>
@@ -39,6 +40,7 @@ export default function Offer({ lead }: { lead?: string }) {
             </ul>
             <Link href="/avulso" className="btn-light mt-6 w-full">Escolher os encontros</Link>
           </div>
+          )}
         </div>
       </div>
     </section>

@@ -35,12 +35,12 @@ export const AFFILIATES: Record<string, Affiliate> = {
     checkoutUrl: 'https://pay.cakto.com.br/TODO-exemplo1',
     checkoutUrlB: 'https://pay.cakto.com.br/TODO-exemplo1-b',
     whatsapp: '5500000000000', // TODO: número real
-    active: true,
+    active: false, // TODO: ative quando tiver o checkout real
   },
   exemplo2: {
     name: 'Exemplo Afiliado 2',
     // TODO: checkout real
     checkoutUrl: 'https://pay.cakto.com.br/TODO-exemplo2',
-    active: true,
+    active: false, // TODO: ative quando tiver o checkout real
   },
 };

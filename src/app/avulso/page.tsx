@@ -21,6 +21,10 @@ export default function AvulsoPage() {
   const [paused, setPaused] = useState(false);
   const headingRef = useRef<HTMLHeadingElement>(null);
 
+  useEffect(() => {
+    if (!site.avulsoEnabled) router.replace('/#oferta');
+  }, [router]);
+
   const toggle = (x: number) =>
     setPicked((p) => (p.includes(x) ? p.filter((y) => y !== x) : [...p, x].sort((a, b) => a - b)));
 
@@ -57,6 +61,8 @@ export default function AvulsoPage() {
     const t = setTimeout(() => setLeft((x) => x - 1), 1000);
     return () => clearTimeout(t);
   }, [asking, paused, left]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  if (!site.avulsoEnabled) return null;
 
   return (
     <>
