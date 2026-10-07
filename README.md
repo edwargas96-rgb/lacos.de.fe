@@ -30,6 +30,9 @@ Parâmetros repassados ao checkout: `checkoutParamMap` e `checkoutAffiliateParam
 ## Página de obrigado (`/obrigado`)
 Configure na Cakto o redirecionamento depois do pagamento para `https://SEU-DOMINIO/obrigado`. Preencha `support.whatsapp` e `support.membersUrl` em `src/config/site.ts` (sem eles, os botões ficam ocultos). A página não é indexada pelo Google.
 
+## Promoção de/por
+`promo` em `src/config/site.ts` (`enabled`, `fullPrice`, `label`). O preço `price` precisa ser o MESMO do checkout da Cakto. O preço cheio tem que ser real.
+
 ## Garantias, preços e encontros avulsos
 - Preços: `price` (30 encontros) e `priceSingle` (R$ 19,90 por encontro) em `src/config/site.ts`.
 - Garantias: `guaranteeDays` (7, incondicional) e `guarantee30Days` (30, "faça os encontros e, se nada mudou, 100% de volta"). TODO: configurar o prazo no produto da Cakto e definir o que vale como comprovação (ex.: registro dos encontros enviado por WhatsApp). Ajustar `/termos`.

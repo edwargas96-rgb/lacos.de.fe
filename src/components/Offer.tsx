@@ -16,10 +16,25 @@ export default function Offer({ lead }: { lead?: string }) {
 
         <div className={`mt-8 grid gap-5 ${site.avulsoEnabled ? 'sm:grid-cols-2' : 'mx-auto max-w-md'}`}>
           <div className="relative rounded-3xl border-4 border-gold bg-white p-6 text-center text-ink shadow-2xl">
-            <span className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-gold px-4 py-1 text-xs font-extrabold uppercase tracking-wider text-teal-dark">Opção completa</span>
+            {site.avulsoEnabled && <span className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-gold px-4 py-1 text-xs font-extrabold uppercase tracking-wider text-teal-dark">Opção completa</span>}
             <p className="mt-2 font-serif text-xl font-bold text-teal-dark">Os 30 encontros</p>
-            <p className="mt-2 font-serif text-6xl font-black text-teal">{formatPrice()}</p>
-            <p className="text-sm text-ink/75">pagamento único · equivale a {perEncounter} por encontro</p>
+            {site.promo.enabled && site.promo.fullPrice > site.price ? (
+              <div className="mt-2">
+                <p className="text-lg text-ink/70">
+                  <span className="sr-only">Preço original: </span>
+                  De <s>{formatPrice(site.promo.fullPrice)}</s>
+                </p>
+                <p className="text-sm font-bold uppercase tracking-wider text-gold-dark">por apenas</p>
+                <p className="font-serif text-6xl font-black text-teal">{formatPrice()}</p>
+                <p className="mt-2 inline-block rounded-full bg-gold px-3 py-1 text-xs font-extrabold uppercase tracking-wider text-teal-dark">
+                  {site.promo.label}
+                </p>
+              </div>
+            ) : (
+              <p className="mt-2 font-serif text-6xl font-black text-teal">{formatPrice()}</p>
+            )}
+            <p className="mt-2 text-sm font-bold text-teal">Você economiza {formatPrice(Math.round((site.promo.fullPrice - site.price) * 100) / 100)} nesta oferta</p>
+            <p className="mt-1 text-sm text-ink/75">pagamento único · equivale a {perEncounter} por encontro</p>
             <ul className="mt-4 space-y-2 text-left text-sm">
               {['30 encontros de 10 a 15 minutos', 'Versão curta e Versão + em cada um', 'Onboarding “Antes do primeiro encontro”', `Garantia de ${site.guaranteeDays} e de ${site.guarantee30Days} dias`].map((t) => (
                 <li key={t} className="flex gap-2"><Icon name="check" className="mt-0.5 h-5 w-5 shrink-0 text-gold-dark" />{t}</li>

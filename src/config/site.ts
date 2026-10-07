@@ -12,7 +12,17 @@ export const site = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://lacosdefe.vercel.app',
 
   /** Preço em reais (valor inteiro ou decimal). */
-  price: 37.9,
+  price: 27.9,
+  /**
+   * Promoção "de/por". SÓ deixe ligada se o preço cheio for REAL (o valor que você vai cobrar depois
+   * da promoção). Um "de" inventado é propaganda enganosa. Desligue com enabled: false.
+   * Lembre de configurar o MESMO preço (27,90) no checkout da Cakto.
+   */
+  promo: {
+    enabled: true,
+    fullPrice: 79.9,
+    label: 'Preço de lançamento',
+  },
   /** Liga a compra de encontros à parte (/avulso). Desligada até existirem os checkouts avulsos na Cakto. */
   avulsoEnabled: false,
 
