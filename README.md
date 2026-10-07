@@ -31,7 +31,7 @@ Parâmetros repassados ao checkout: `checkoutParamMap` e `checkoutAffiliateParam
 Configure na Cakto o redirecionamento depois do pagamento para `https://SEU-DOMINIO/obrigado`. Preencha `support.whatsapp` e `support.membersUrl` em `src/config/site.ts` (sem eles, os botões ficam ocultos). A página não é indexada pelo Google.
 
 ## Cupom automático
-`checkoutCoupon` em `src/config/site.ts` (`enabled`, `code`, `param`). O código é adicionado ao link do checkout principal. Confirme na Cakto o nome do parâmetro de URL do cupom e ajuste `param` (hoje: `coupon`).
+`checkoutCoupon` em `src/config/site.ts` (`enabled`, `code`, `param`). O código é adicionado ao link do checkout principal. O parâmetro `coupon` foi testado e a Cakto aplica o cupom ao abrir o checkout.
 
 ## Oferta Essencial (menor)
 `essencial` em `src/config/site.ts` (`enabled`, `price`, `encounters`). Fica desligada. Para ligar: crie o produto na Cakto, cole o link em `checkoutUrlEssencial` (affiliates.ts) e mude `enabled: true`. A área de membros precisa liberar só os Dias 1 a 10 para esse produto.

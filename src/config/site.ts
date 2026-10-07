@@ -103,8 +103,8 @@ export const site = {
   checkoutAffiliateParam: '',
   /**
    * Cupom aplicado automaticamente no checkout do produto principal.
-   * `param` é o nome do parâmetro de URL que a Cakto lê para o cupom. TODO: confirmar na Cakto
-   * (palpite: "coupon"). Se a Cakto ignorar o parâmetro, nada quebra: o cupom só não é aplicado.
+   * `param` é o nome do parâmetro de URL que a Cakto lê para o cupom. Confirmado: "coupon" funciona
+   * (o checkout abre com o cupom já aplicado). Se a Cakto ignorar o parâmetro, nada quebra.
    */
   checkoutCoupon: {
     enabled: true,
