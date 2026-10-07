@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { ANSWERS_KEY, QUESTIONS, STEPS, levelFor, readingTimeMs, xpFor, XP_PER_ANSWER, type Answers } from '@/lib/quiz';
 import { getStorage, readJSON, writeJSON } from '@/lib/storage';
 import { track } from '@/lib/track';
+import { unlock } from '@/lib/unlock';
 import Logo from '@/components/Logo';
 import Skeleton from '@/components/Skeleton';
 import GrowingTree from '@/components/GrowingTree';
@@ -69,6 +70,7 @@ export default function QuizPage() {
     if (index === STEPS.length - 1) {
       setLeaving(true);
       track('quiz_complete', { xp });
+      if (unlock('quiz', getStorage())) track('offer_unlocked', { via: 'quiz' });
       router.push('/resultado');
     } else setIndex(index + 1);
   }

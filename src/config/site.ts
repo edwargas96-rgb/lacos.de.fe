@@ -110,6 +110,8 @@ export const site = {
     enabled: true,
     code: 'FAMILIA',
     param: 'coupon',
+    /** true = o cupom só vale para quem completou o quiz ou o Encontro 1; os demais veem o preço cheio. */
+    requiresUnlock: true,
   },
   /** Parâmetro do checkout que recebe o número do encontro avulso. Vazio = não enviar. TODO: confirmar na Cakto. */
   checkoutEncounterParam: 'encontro',

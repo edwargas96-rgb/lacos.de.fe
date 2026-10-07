@@ -8,6 +8,8 @@ import { AFFILIATES } from '@/config/affiliates';
 import TrackView from '@/components/TrackView';
 import Offer from '@/components/Offer';
 import Footer from '@/components/Footer';
+import UnlockMessage from '@/components/UnlockMessage';
+import { unlock } from '@/lib/unlock';
 import Skeleton from '@/components/Skeleton';
 import { Sun } from '@/components/Illustrations';
 
@@ -20,7 +22,9 @@ export default function ResultadoPage() {
 
   useEffect(() => {
     const store = getStorage();
-    setAnswers(readJSON<Answers>(store, ANSWERS_KEY));
+    const saved = readJSON<Answers>(store, ANSWERS_KEY);
+    setAnswers(saved);
+    if (isComplete(saved)) unlock('quiz', store);
     const slug = getAttribution(store).slug;
     setWhatsapp(AFFILIATES[slug]?.whatsapp);
     // Pequena pausa de "montagem" do resultado (mais curta para quem prefere menos movimento).
@@ -83,6 +87,7 @@ export default function ResultadoPage() {
             </ul>
           </div>
         )}
+        <div className="mt-8"><UnlockMessage via="quiz" /></div>
         <div className="mt-8 flex flex-col gap-3">
           <Link href="/encontro-1" className="btn-primary">Fazer o Encontro 1 grátis</Link>
           {whatsapp && (

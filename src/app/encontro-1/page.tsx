@@ -5,6 +5,8 @@ import { encontro1 as e } from '@/content/encontro-1';
 import { ANSWERS_KEY, defaultVersion, type Answers, type EncounterVersion } from '@/lib/quiz';
 import { getStorage, readJSON, writeJSON } from '@/lib/storage';
 import { track } from '@/lib/track';
+import { unlock } from '@/lib/unlock';
+import UnlockMessage from '@/components/UnlockMessage';
 import TrackView from '@/components/TrackView';
 import Footer from '@/components/Footer';
 import Skeleton from '@/components/Skeleton';
@@ -30,6 +32,7 @@ export default function Encontro1Page() {
     if (d) {
       setDone(true);
       setRating(d.rating);
+      unlock('encontro1', store);
     }
     setReady(true);
   }, []);
@@ -38,6 +41,7 @@ export default function Encontro1Page() {
     if (!rating) return;
     writeJSON(getStorage(), DONE_KEY, { rating } satisfies Done);
     track('encontro1_done', { nota: rating });
+    if (unlock('encontro1', getStorage())) track('offer_unlocked', { via: 'encontro1' });
     setDone(true);
   }
 
@@ -132,11 +136,13 @@ export default function Encontro1Page() {
             {!rating && <p className="mt-2 text-sm text-ink/70">Escolha uma nota de 1 a 5 para concluir.</p>}
           </section>
         ) : (
-          <section className="card text-center" role="status">
-            <h2 className="mb-2 text-2xl font-bold">Que bom que vocês fizeram! 🌿</h2>
-            <p className="mb-4">Se esse encontro fez sentido para a sua casa, há mais 29 esperando por vocês, um por dia.</p>
-            <Link href="/#oferta" className="btn-primary">Conhecer os 30 encontros</Link>
-          </section>
+          <div className="space-y-5">
+            <section className="card text-center" role="status">
+              <h2 className="mb-2 text-2xl font-bold">Que bom que vocês fizeram! 🌿</h2>
+              <p>Se esse encontro fez sentido para a sua casa, há mais 29 esperando por vocês.</p>
+            </section>
+            <UnlockMessage via="encontro1" />
+          </div>
         )}
       </article>
       <Footer />

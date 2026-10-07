@@ -42,6 +42,9 @@ export default function Home() {
           </h1>
           <div className="mt-7">
             <CtaPair dark />
+            {site.checkoutCoupon.enabled && site.checkoutCoupon.requiresUnlock && (
+              <p className="mt-3 text-sm font-semibold text-gold-light">Faça o quiz ou o Encontro 1 e libere um preço especial.</p>
+            )}
           </div>
         </div>
         <Wave fill="#FFF5DB" />
