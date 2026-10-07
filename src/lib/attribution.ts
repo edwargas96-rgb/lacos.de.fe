@@ -114,6 +114,7 @@ export function buildCheckoutUrl(
   encounter?: number | number[],
   encounterParam: string = site.checkoutEncounterParam,
   fallback: Affiliate | undefined = AFFILIATES[DEFAULT_SLUG],
+  coupon?: { code: string; param: string },
 ): string {
   let base: string;
   if (product === 'essencial') {
@@ -139,5 +140,6 @@ export function buildCheckoutUrl(
   if (affiliateParam) url.searchParams.set(affiliateParam, attr.slug);
   const list = Array.isArray(encounter) ? encounter : encounter ? [encounter] : [];
   if (product === 'avulso' && list.length > 0 && encounterParam) url.searchParams.set(encounterParam, list.join(','));
+  if (product === 'principal' && coupon?.code && coupon.param) url.searchParams.set(coupon.param, coupon.code);
   return url.toString();
 }

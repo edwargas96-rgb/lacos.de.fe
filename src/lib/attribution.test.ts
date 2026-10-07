@@ -120,6 +120,14 @@ describe('buildCheckoutUrl', () => {
     expect(() => buildCheckoutUrl(attr, affiliates.bia, 'A', {}, '', 'essencial', undefined, '', affiliates.default)).toThrow();
   });
 
+  it('cupom vai só no produto principal e respeita o nome do parâmetro', () => {
+    const c = { code: 'FAMILIA', param: 'coupon' };
+    const main = new URL(buildCheckoutUrl(attr, affiliates.ana, 'A', {}, '', 'principal', undefined, '', undefined, c));
+    expect(main.searchParams.get('coupon')).toBe('FAMILIA');
+    const ess = new URL(buildCheckoutUrl(attr, { ...affiliates.ana, checkoutUrlEssencial: 'https://pay.test/e' }, 'A', {}, '', 'essencial', undefined, '', undefined, c));
+    expect(ess.searchParams.has('coupon')).toBe(false);
+  });
+
   it('usa checkoutUrlB na variante B', () => {
     expect(buildCheckoutUrl(attr, affiliates.ana, 'B', {}, '')).toBe('https://pay.test/ana-b');
   });

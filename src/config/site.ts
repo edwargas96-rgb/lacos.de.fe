@@ -101,6 +101,16 @@ export const site = {
   } as Record<string, string>,
   /** Parâmetro do checkout que recebe o slug do afiliado. Vazio = não enviar. TODO: confirmar na Cakto. */
   checkoutAffiliateParam: '',
+  /**
+   * Cupom aplicado automaticamente no checkout do produto principal.
+   * `param` é o nome do parâmetro de URL que a Cakto lê para o cupom. TODO: confirmar na Cakto
+   * (palpite: "coupon"). Se a Cakto ignorar o parâmetro, nada quebra: o cupom só não é aplicado.
+   */
+  checkoutCoupon: {
+    enabled: true,
+    code: 'FAMILIA',
+    param: 'coupon',
+  },
   /** Parâmetro do checkout que recebe o número do encontro avulso. Vazio = não enviar. TODO: confirmar na Cakto. */
   checkoutEncounterParam: 'encontro',
 

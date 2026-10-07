@@ -34,7 +34,7 @@ export default function GoPage() {
         : getAttribution(store);
       const affiliate = AFFILIATES[attr.slug] ?? AFFILIATES.default;
       const variant = product === 'principal' ? getVariant(affiliate, store) : 'A';
-      const target = buildCheckoutUrl(attr, affiliate, variant, undefined, undefined, product, encounter);
+      const target = buildCheckoutUrl(attr, affiliate, variant, undefined, undefined, product, encounter, undefined, undefined, site.checkoutCoupon.enabled ? site.checkoutCoupon : undefined);
       setUrl(target);
       setLabel(product === 'principal' ? `Os 30 encontros · ${formatPrice()}` : product === 'essencial' ? `Essencial · ${site.essencial.encounters} encontros · ${formatPrice(site.essencial.price)}` : `${encounter!.length} encontros (${encounter!.join(', ')}) · ${formatPrice(encounter!.length * site.priceSingle)}`);
       track('checkout_click', { produto: product, ...(encounter ? { encontros: encounter, quantidade: encounter.length } : {}) });
