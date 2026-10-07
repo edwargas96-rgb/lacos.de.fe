@@ -101,7 +101,7 @@ export function getVariant(
   return v;
 }
 
-export type Product = 'principal' | 'avulso';
+export type Product = 'principal' | 'avulso' | 'essencial';
 
 /** Monta a URL do checkout repassando os parâmetros configurados em site.ts. */
 export function buildCheckoutUrl(
@@ -116,7 +116,11 @@ export function buildCheckoutUrl(
   fallback: Affiliate | undefined = AFFILIATES[DEFAULT_SLUG],
 ): string {
   let base: string;
-  if (product === 'avulso') {
+  if (product === 'essencial') {
+    const url = affiliate.checkoutUrlEssencial ?? fallback?.checkoutUrlEssencial;
+    if (!url) throw new Error('checkout do Essencial não configurado');
+    base = url;
+  } else if (product === 'avulso') {
     const qty = Array.isArray(encounter) ? encounter.length : encounter ? 1 : 0;
     base =
       affiliate.checkoutUrlAvulsoByQty?.[qty] ??

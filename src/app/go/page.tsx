@@ -21,8 +21,9 @@ export default function GoPage() {
       const store = getStorage();
       const params = new URLSearchParams(window.location.search);
       const p = params.get('p') ?? 'principal';
-      if (p !== 'principal' && p !== 'avulso') throw new Error('produto desconhecido');
+      if (p !== 'principal' && p !== 'avulso' && p !== 'essencial') throw new Error('produto desconhecido');
       const product: Product = p;
+      if (product === 'essencial' && !site.essencial.enabled) throw new Error('Essencial desativado');
       if (product === 'avulso' && !site.avulsoEnabled) throw new Error('compra avulsa desativada');
       const encounter = product === 'avulso' ? parseEncounters(params.get('n'), site.avulsoMinimum) : undefined;
       if (product === 'avulso' && !encounter) throw new Error('encontros inválidos');
@@ -35,7 +36,7 @@ export default function GoPage() {
       const variant = product === 'principal' ? getVariant(affiliate, store) : 'A';
       const target = buildCheckoutUrl(attr, affiliate, variant, undefined, undefined, product, encounter);
       setUrl(target);
-      setLabel(product === 'principal' ? `Os 30 encontros · ${formatPrice()}` : `${encounter!.length} encontros (${encounter!.join(', ')}) · ${formatPrice(encounter!.length * site.priceSingle)}`);
+      setLabel(product === 'principal' ? `Os 30 encontros · ${formatPrice()}` : product === 'essencial' ? `Essencial · ${site.essencial.encounters} encontros · ${formatPrice(site.essencial.price)}` : `${encounter!.length} encontros (${encounter!.join(', ')}) · ${formatPrice(encounter!.length * site.priceSingle)}`);
       track('checkout_click', { produto: product, ...(encounter ? { encontros: encounter, quantidade: encounter.length } : {}) });
       redirect = setTimeout(() => window.location.replace(target), 300);
     } catch (err) {

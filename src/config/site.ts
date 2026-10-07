@@ -23,6 +23,16 @@ export const site = {
     fullPrice: 79.9,
     label: 'Preço de lançamento',
   },
+  /**
+   * Oferta menor ("Essencial"): menos encontros por um valor menor, ao lado da completa.
+   * Fica desligada até existir o checkout dela na Cakto (checkoutUrlEssencial em affiliates.ts).
+   */
+  essencial: {
+    enabled: false,
+    price: 29.9,
+    encounters: 10,
+  },
+
   /** Liga a compra de encontros à parte (/avulso). Desligada até existirem os checkouts avulsos na Cakto. */
   avulsoEnabled: false,
 

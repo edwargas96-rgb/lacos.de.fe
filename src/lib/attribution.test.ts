@@ -112,6 +112,14 @@ describe('buildCheckoutUrl', () => {
     expect(two.origin + two.pathname).toBe('https://pay.test/avulso');
   });
 
+  it('Essencial usa o próprio checkout, cai no do default e nunca no principal', () => {
+    const own = { ...affiliates.ana, checkoutUrlEssencial: 'https://pay.test/ana-ess' };
+    expect(buildCheckoutUrl(attr, own, 'A', {}, '', 'essencial')).toBe('https://pay.test/ana-ess');
+    const def = { ...affiliates.default, checkoutUrlEssencial: 'https://pay.test/def-ess' };
+    expect(buildCheckoutUrl(attr, affiliates.bia, 'A', {}, '', 'essencial', undefined, '', def)).toBe('https://pay.test/def-ess');
+    expect(() => buildCheckoutUrl(attr, affiliates.bia, 'A', {}, '', 'essencial', undefined, '', affiliates.default)).toThrow();
+  });
+
   it('usa checkoutUrlB na variante B', () => {
     expect(buildCheckoutUrl(attr, affiliates.ana, 'B', {}, '')).toBe('https://pay.test/ana-b');
   });

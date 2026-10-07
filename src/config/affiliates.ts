@@ -5,6 +5,8 @@ export interface Affiliate {
   checkoutUrlB?: string;
   /** Checkout do encontro avulso. Sem ele, usa o do afiliado "default". */
   checkoutUrlAvulso?: string;
+  /** Checkout da oferta Essencial (10 encontros). Sem ele, usa o do afiliado "default". */
+  checkoutUrlEssencial?: string;
   /**
    * Checkout por quantidade de encontros (2, 3, 4…), cada um com o preço = quantidade x R$ 19,90.
    * Sem a quantidade aqui, usa checkoutUrlAvulso. TODO: criar as ofertas na Cakto.
@@ -27,6 +29,8 @@ export const AFFILIATES: Record<string, Affiliate> = {
     checkoutUrl: 'https://pay.cakto.com.br/34vsp2i_1172299',
     // TODO: checkout real do encontro avulso (R$ 19,90)
     checkoutUrlAvulso: 'https://pay.cakto.com.br/TODO-avulso',
+    // TODO: checkout real da oferta Essencial (10 encontros, R$ 29,90)
+    checkoutUrlEssencial: 'https://pay.cakto.com.br/TODO-essencial',
     active: true,
   },
   exemplo1: {
