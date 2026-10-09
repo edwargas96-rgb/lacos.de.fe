@@ -81,6 +81,8 @@ export default function Home() {
         <Wave fill="#FFF5DB" />
       </section>
 
+      <Testimonials />
+
       <section className="bg-sand" aria-labelledby="criadora">
         <div className="mx-auto grid max-w-4xl items-center gap-8 px-5 py-14 sm:grid-cols-5 sm:py-20">
           <div className="sm:col-span-2">
@@ -189,8 +191,6 @@ export default function Home() {
           ))}
         </ul>
       </section>
-
-      <Testimonials />
 
       <section className="relative overflow-hidden bg-teal-dark text-white [background-image:radial-gradient(60%_70%_at_50%_100%,rgba(235,168,35,.3),transparent)]" aria-labelledby="garantia">
         <div className="section">

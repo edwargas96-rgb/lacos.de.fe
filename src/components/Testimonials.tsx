@@ -19,10 +19,10 @@ export default function Testimonials() {
   const items = usingSamples ? sampleTestimonials : testimonials;
 
   return (
-    <section className="bg-sand" aria-labelledby="depoimentos">
+    <section className="bg-cream" aria-labelledby="depoimentos">
       <div className="section">
-        <p className="eyebrow text-center">Quem já fez em família</p>
-        <h2 id="depoimentos" className="mb-8 mt-1 text-center text-2xl font-extrabold sm:text-4xl">O que as famílias contam</h2>
+        <p className="eyebrow text-center">Quem já começou</p>
+        <h2 id="depoimentos" className="mb-8 mt-1 text-center text-2xl font-extrabold sm:text-4xl">Famílias que já utilizam</h2>
         {usingSamples && (
           <p className="mb-6 rounded-xl border-2 border-dashed border-gold-dark bg-white p-3 text-center text-sm font-bold text-gold-dark">
             EXEMPLO: modelos de texto, não são pessoas reais. Troque em src/content/testimonials.ts. Esta faixa só aparece em pré-visualização.
