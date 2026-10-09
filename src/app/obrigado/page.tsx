@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 const steps = [
   ['Confira o seu e-mail', 'Em instantes você recebe a mensagem com o acesso. Se não aparecer, olhe também o spam e a aba Promoções.'],
-  ['Entre na área dos encontros', 'Use o link e o login do e-mail para abrir a área de membros.'],
+  ['Entre na área dos encontros', 'Use o botão acima ou o link do e-mail. Entre com o e-mail da compra; no primeiro acesso, crie a sua senha pelo convite.'],
   ['Comece pelo Dia 1', 'São 10 a 15 minutos: história, conversa, atividade fora da tela e oração. Sem preparo.'],
 ];
 
@@ -40,6 +40,21 @@ export default function Obrigado() {
       </header>
 
       <main className="mx-auto max-w-2xl px-5 pb-16">
+        {membersUrl && (
+          <section className="-mt-2 mb-10 rounded-3xl border-4 border-gold bg-teal-dark p-6 text-center text-white shadow-2xl" aria-labelledby="area">
+            <span className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-gold text-teal-dark" aria-hidden="true">
+              <Icon name="book" className="h-8 w-8" />
+            </span>
+            <p className="eyebrow !text-gold-light">Seu acesso está pronto</p>
+            <h2 id="area" className="mt-1 text-2xl font-extrabold !text-white sm:text-3xl">Entre na sua área de membros</h2>
+            <p className="mx-auto mt-3 max-w-md text-white/90">
+              É lá que ficam os 30 encontros. Entre com o <b>e-mail que você usou na compra</b>. Se for o seu primeiro acesso, use o convite que chegou por e-mail para criar a sua senha.
+            </p>
+            <a href={membersUrl} target="_blank" rel="noopener noreferrer" className="btn-primary mt-5 w-full max-w-sm">Acessar a área de membros</a>
+            <p className="mt-3 text-sm text-white/75">Dica: salve este endereço nos favoritos do celular.</p>
+          </section>
+        )}
+
         <h2 className="mb-5 text-center text-2xl font-extrabold">Seus próximos passos</h2>
         <ol className="space-y-4">
           {steps.map(([t, d], i) => (
@@ -50,11 +65,6 @@ export default function Obrigado() {
           ))}
         </ol>
 
-        {membersUrl && (
-          <div className="mt-8 text-center">
-            <a href={membersUrl} className="btn-primary w-full max-w-sm" rel="noopener noreferrer">Acessar a área de membros</a>
-          </div>
-        )}
 
         <section className="mt-10 rounded-3xl bg-teal p-6 text-center text-white shadow-lg" aria-labelledby="ajuda">
           <h2 id="ajuda" className="text-xl font-extrabold !text-white">Não recebeu o acesso?</h2>

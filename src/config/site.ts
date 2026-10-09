@@ -81,7 +81,7 @@ export const site = {
     /** WhatsApp de suporte: só dígitos com DDI (ex.: 5511999999999). Vazio = botão oculto. TODO: preencher. */
     whatsapp: '5541989037815',
     /** Link de login da área de membros (Cakto Members). Vazio = botão oculto. TODO: preencher. */
-    membersUrl: '',
+    membersUrl: 'https://aluno.cakto.com.br/app/courses',
   },
 
   /** Janela first-touch da atribuição de afiliado. */
