@@ -1,7 +1,10 @@
 export interface Testimonial {
   name: string;
+  /** Print da conversa (opcional), em /public. Cubra telefone, sobrenome e fotos ANTES de salvar. */
+  image?: { src: string; width: number; height: number; alt: string };
   /** Ex.: "Mãe de dois, Curitiba". Só informe o que a pessoa autorizou. */
   detail?: string;
+  /** Texto do depoimento (sempre preencha: serve de legenda e de texto alternativo). */
   text: string;
 }
 
